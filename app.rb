@@ -4,15 +4,14 @@ require 'rugged'
 require 'sinatra'
 
 class App < Sinatra::Base
-
   get '/' do
     repo = Rugged::Repository.new(File.dirname(__FILE__))
-
-    tree = repo.lookup('HEAD')
-    tree.map { |entry| puts entry[:name] }.join("\n")
-
+    commit = repo.lookup(repo.head.target)
+    text = commit.tree.map { |entry| entry[:name] }.join("\n")
+    html = <<-HTML
+    <pre>
+      #{text}
+    </pre>
+    HTML
   end
-
 end
-
-run App
