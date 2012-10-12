@@ -24,4 +24,14 @@ describe Gist do
     end
 
   end
+
+  describe 'Gist Files' do
+
+    subject(:gist) do
+      Gist.new(gist_files_attributes: [{contents: "Holla"}])
+    end
+
+    it { should be_valid }
+    it { should have(1).gist_file }
+  end
 end
