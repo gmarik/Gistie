@@ -4,16 +4,23 @@ describe Gist do
 
   describe 'Validations' do
 
-    context 'empty' do
+    context 'blank' do
       let(:gist) { Gist.new }
 
+      it {should be_blank}
       it {should be_invalid}
+      it {should have(1).error_on(:contents) }
     end
 
-    context 'with content' do
-      let(:gist) { Gist.new(:contents => []) }
+    context 'non blank' do
+      let(:gist) do
+        g = Gist.new
+        g.stub!(blank?: false)
+        g
+      end
 
-      it {should be_valid}
+      it { gist.should_not be_blank }
+      it { gist.should be_valid }
     end
 
   end

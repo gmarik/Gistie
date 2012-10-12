@@ -4,10 +4,13 @@ class Gist #< ActiveRecord::Base
   # has_many :gist_files
   # belongs_to :gist_repository
 
+  validate :non_blank
 
-  validate :non_empty
+  def non_blank
+    blank? and errors.add(:contents, "Can't be blank")
+  end
 
-  def non_empty
-    errors.add(:contents, "Can't be empty")
+  def blank?
+    true
   end
 end
