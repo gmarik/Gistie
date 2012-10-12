@@ -5,7 +5,7 @@ describe Gist do
   describe 'Validations' do
 
     context 'blank' do
-      let(:gist) { Gist.new }
+      subject(:gist) { Gist.new }
 
       it {should be_blank}
       it {should be_invalid}
@@ -13,14 +13,14 @@ describe Gist do
     end
 
     context 'non blank' do
-      let(:gist) do
+      subject(:gist) do
         g = Gist.new
         g.stub!(blank?: false)
         g
       end
 
-      it { gist.should_not be_blank }
-      it { gist.should be_valid }
+      it { should_not be_blank }
+      it { should be_valid }
     end
 
   end
