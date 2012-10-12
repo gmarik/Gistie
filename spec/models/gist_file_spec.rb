@@ -23,4 +23,22 @@ describe GistFile do
     end
   end
 
+
+  describe ".from_params" do
+
+    subject(:gist_file) do
+      GistFile.from_params({contents: "Holla", name: "name.md"})
+    end
+
+    it { should be_valid }
+
+    it "sets name" do
+      gist_file.name.should == "name.md"
+    end
+
+    it "sets contents" do
+      gist_file.contents.should == "Holla"
+    end
+  end
+
 end
