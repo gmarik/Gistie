@@ -1,5 +1,4 @@
-class Gist #< ActiveRecord::Base
-  include ActiveModel::Validations
+class Gist < ActiveRecord::Base
 
   # has_many :gist_files
   # belongs_to :gist_repository
