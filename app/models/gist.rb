@@ -20,4 +20,13 @@ class Gist < ActiveRecord::Base
       GistFile.from_params(attr)
     end
   end
+
+  def repo
+    @repo ||= begin
+      path = Rails.root + 'repos/' + (self.id.to_s + ".git")
+      # p path.to_s
+      FileUtils.mkdir_p(path)
+      Rugged::Repository.init_at(path.to_s, true)
+    end
+  end
 end
