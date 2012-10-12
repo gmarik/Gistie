@@ -22,6 +22,9 @@ end
 
 gem 'jquery-rails'
 
+
+gem 'rugged'
+
 gem 'rspec-rails', group: [:test]
 
 
