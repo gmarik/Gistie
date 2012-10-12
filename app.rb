@@ -24,7 +24,5 @@ __END__
 @@ view
   <% @entries.each do |n, data| %>
    <h2><%= n %></h2>
-   <pre>
-   <%= data %>
-   </pre>
+   <pre><%= data %></pre>
   <% end %>
