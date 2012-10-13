@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CreateGist do
   let(:gist) do
-     Gist.new(gist_files_attributes: [{contents: "Holla"}])
+     Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
   end
 
   after :each do

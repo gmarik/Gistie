@@ -9,7 +9,7 @@ describe Gist do
 
       it {should be_blank}
       it {should be_invalid}
-      it {should have(1).error_on(:contents) }
+      it {should have(1).error_on(:blob) }
     end
 
     context 'non blank' do
@@ -25,19 +25,19 @@ describe Gist do
 
   end
 
-  describe '.gist_files' do
+  describe '.gist_blobs' do
     subject(:gist) do
-      Gist.new(gist_files_attributes: [{contents: "Holla"}])
+      Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
     end
 
     it { should be_valid }
-    it { should have(1).gist_file }
+    it { should have(1).gist_blob }
   end
 
   describe '.create' do
     it 'creates gist' do
       lambda do
-        Gist.create!(gist_files_attributes: [{contents: "Holla"}])
+        Gist.create!(gist_blobs_attributes: [{blob: "Holla"}])
       end.should change(Gist, :count).by(1)
     end
   end

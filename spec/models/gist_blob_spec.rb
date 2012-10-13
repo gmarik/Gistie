@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe GistFile do
+describe GistBlob do
 
   describe 'Validations' do
 
     context "invalid" do
-      subject(:gist_file) { GistFile.new }
+      subject(:gist_file) { GistBlob.new }
 
       it {should be_invalid}
-      it {should have(1).error_on(:contents) }
+      it {should have(1).error_on(:blob) }
     end
 
     context "valid" do
       subject(:gist_file) {
-        GistFile.new.tap do |g|
-          g.contents = "Holla"
+        GistBlob.new.tap do |g|
+          g.blob = "Holla"
         end
       }
 
@@ -27,7 +27,7 @@ describe GistFile do
   describe ".from_params" do
 
     subject(:gist_file) do
-      GistFile.from_params({contents: "Holla", name: "name.md"})
+      GistBlob.from_params({blob: "Holla", name: "name.md"})
     end
 
     it { should be_valid }
@@ -36,8 +36,8 @@ describe GistFile do
       gist_file.name.should == "name.md"
     end
 
-    it "sets contents" do
-      gist_file.contents.should == "Holla"
+    it "sets blob" do
+      gist_file.blob.should == "Holla"
     end
   end
 

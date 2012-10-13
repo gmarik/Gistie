@@ -1,4 +1,4 @@
-class GistBlob
+class GistFile
   include ActiveModel::Validations
 
   attr_accessor :blob, :name#, :description
