@@ -1,5 +1,7 @@
 class Gist < ActiveRecord::Base
 
+  include GitRepo
+
   attr_accessor :gist_files, :gist_files_attributes
 
   attr_accessible :gist_files_attributes
@@ -20,17 +22,4 @@ class Gist < ActiveRecord::Base
     end
   end
 
-  def repo_path
-    path = Rails.root + 'repos/' + (self.id.to_s + ".git")
-  end
-
-  def repo
-    if new_record? then nil
-    else @repo ||= Rugged::Repository.new(repo_path.to_s)
-    end
-  end
-
-  def init_repo(path = repo_path)
-    @repo ||= Rugged::Repository.init_at(path.to_s, true)
-  end
 end

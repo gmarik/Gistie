@@ -42,13 +42,8 @@ describe Gist do
     end
   end
 
-  describe '#repo' do
-    context 'for a new record' do
-      subject(:gist) do
-        Gist.new(gist_files_attributes: [{contents: "Holla"}])
-      end
 
-      its(:repo) { should be_nil }
-    end
+  it "is a git repo" do
+    Gist.should < GitRepo
   end
 end
