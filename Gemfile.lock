@@ -93,7 +93,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
-    rugged (0.16.0)
+    rugged (0.17.0.b6)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -122,7 +122,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 3.2.8)
   rspec-rails
-  rugged
+  rugged (= 0.17.0.b6)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
