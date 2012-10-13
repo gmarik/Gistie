@@ -35,30 +35,20 @@ describe Gist do
   end
 
   describe '.create' do
-
-    subject(:gist) do
-      Gist.new(gist_files_attributes: [{contents: "Holla"}])
+    it 'creates gist' do
+      lambda do
+        Gist.create!(gist_files_attributes: [{contents: "Holla"}])
+      end.should change(Gist, :count).by(1)
     end
+  end
 
-    before :all do
-      gist.save!
-    end
-
-    it 'gets created' do
-      gist.should be_persisted
-    end
-
-    it 'has a repo' do
-      gist.repo.should_not be_nil
-    end
-
-    context '.repo' do
-
-      it "points to a git repo on filesystem" do
-        File.directory?(gist.repo.path).should be_true
+  describe '#repo' do
+    context 'for a new record' do
+      subject(:gist) do
+        Gist.new(gist_files_attributes: [{contents: "Holla"}])
       end
 
-      it 'continues here'
+      its(:repo) { should be_nil }
     end
   end
 end
