@@ -6,17 +6,26 @@ describe GistWriter do
   let(:writer) { GistWriter.new(repo) }
   let(:a_blob) { mock(blob: "Holla!", name: "README.txt") }
 
-  it "writes stuff" do
-    sha1 = writer.write([a_blob])
-    repo.head.target.should == sha1
+  it "sets reference" do
+    writer.write([a_blob]).
+      should == repo.head.target
   end
 
-  it "raises NothingToCommitError" do
-    writer.write([a_blob])
+  it "writes blob" do
+    sha1 = writer.write([a_blob])
 
-    lambda do
+    repo.file_at(sha1, 'README.txt').
+      should == "Holla!"
+  end
+
+  context 'duplicate commits' do
+    it "raises NothingToCommitError" do
       writer.write([a_blob])
-    end.should raise_error(GistWriter::NothingToCommitError)
+
+      lambda do
+        writer.write([a_blob])
+      end.should raise_error(GistWriter::NothingToCommitError)
+    end
   end
 
   describe '.write_blobs' do
