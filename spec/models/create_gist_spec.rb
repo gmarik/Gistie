@@ -20,7 +20,9 @@ describe CreateGist do
   end
 
   it "initializes repo" do
-    create.call(gist)
+    lambda do
+      create.call(gist)
+    end.should change(gist, :repo).from(nil)
     gist.repo.should be_a(Rugged::Repository)
   end
 

@@ -5,7 +5,7 @@ describe Gist do
   describe 'Validations' do
 
     context 'blank' do
-      subject(:gist) { Gist.new }
+      subject(:blank_gist) { Gist.new }
 
       it {should be_blank}
       it {should be_invalid}
