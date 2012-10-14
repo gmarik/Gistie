@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe GistWriter do
 
-  def repo_dir; '/tmp/123'; end
-
-  let(:repo)   { Rugged::Repository.init_at(repo_dir, true) }
+  let(:repo)   { temp_repo }
   let(:writer) { GistWriter.new(repo) }
   let(:a_blob) { mock(blob: "Holla!", name: "README.txt") }
 
