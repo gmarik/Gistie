@@ -10,7 +10,6 @@ class GistBlob
       params.keys.each do |k|
         gf.send("#{k}=", params[k])
       end
-      gf.name = 'File' if gf.name.blank?
     end
   end
 
