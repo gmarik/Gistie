@@ -1,6 +1,8 @@
 class Gist < ActiveRecord::Base
   include GitRepo
 
+  # TODO: rename this to gist_files instead gist_blobs
+  # as blob is just content without filename
   attr_accessor :gist_blobs, :gist_blobs_attributes
 
   attr_accessible :gist_blobs_attributes
