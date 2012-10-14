@@ -8,6 +8,11 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+def temp_repo
+  dir = Dir.mktmpdir 'dir'
+  Rugged::Repository.init_at(dir, true)
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
