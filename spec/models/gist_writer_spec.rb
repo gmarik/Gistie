@@ -11,6 +11,14 @@ describe GistWriter do
     repo.head.target.should == sha1
   end
 
+  it "raises NothingToCommitError" do
+    writer.write([a_blob])
+
+    lambda do
+      writer.write([a_blob])
+    end.should raise_error(GistWriter::NothingToCommitError)
+  end
+
   describe '.write_blobs' do
     it "writes blobs to repo" do
       repo.should_receive(:write).

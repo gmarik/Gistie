@@ -2,6 +2,8 @@ class GistWriter
 
   attr_reader :repo
 
+  class NothingToCommitError < StandardError; end
+
   def initialize(repo)
     @repo = repo
   end
@@ -16,7 +18,19 @@ class GistWriter
     named_blob_oids = write_blobs(blobs)
     tree_oid        = write_tree(named_blob_oids)
     commit_oid      = write_commit(tree_oid, author)
+    # this prevents duplicated commits
+    # even though commit is writen it just becomes an orphan 
+    # until Garbage Collected
+    # TODO: think of better implementation avoiding commit saving
+    raise NothingToCommitError.new(repo.path) if duplicate?(commit_oid)
     ref             = set_master(commit_oid)
+  end
+
+  def duplicate?(commit_oid)
+    commit = repo.lookup(commit_oid)
+    return if commit.parents.empty?
+    parent_commit = commit.parents.first
+    commit.tree.oid == parent_commit.tree.oid
   end
 
   def write_blobs(blobs)
@@ -27,7 +41,7 @@ class GistWriter
     end
   end
 
-  def write_tree(blob_named_sha1s, builder = Rugged::Tree::Builder.new )
+  def write_tree(blob_named_sha1s, builder = Rugged::Tree::Builder.new)
     blob_named_sha1s.each do |name, oid|
       builder << {
         type: :blob,
