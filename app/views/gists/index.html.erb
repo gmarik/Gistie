@@ -1,0 +1,21 @@
+<h1>Listing gists</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gists.each do |gist| %>
+  <tr>
+    <td><%= link_to 'Show', gist %></td>
+    <td><%= link_to 'Edit', edit_gist_path(gist) %></td>
+    <td><%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gist', new_gist_path %>
