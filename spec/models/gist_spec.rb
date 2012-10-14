@@ -23,6 +23,15 @@ describe Gist do
       it { should be_valid }
     end
 
+    describe 'uniq names' do
+      subject(:gist) do
+        gist_blobs = [{ blob: 1, name: '1'}, { blob: 2, name: '1'}]
+        g = Gist.new(gist_blobs_attributes: gist_blobs)
+      end
+
+      it { should have(1).errors_on(:gist_blobs) }
+    end
+
   end
 
   describe '.gist_blobs' do

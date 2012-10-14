@@ -7,10 +7,19 @@ class Gist < ActiveRecord::Base
 
   attr_accessible :gist_blobs_attributes
 
-  validate :non_blank
+  validate :non_blank, :unique_names
 
   def non_blank
     blank? and errors.add(:blob, "Can't be blank")
+  end
+
+  def gist_blobs
+    @gist_blobs || []
+  end
+
+  def unique_names
+    uniq = (gist_blobs.size == gist_blobs.map(&:name).uniq.size)
+    uniq or errors.add(:gist_blobs, "Duplicate names")
   end
 
   def blank?
