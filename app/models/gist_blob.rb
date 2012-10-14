@@ -13,5 +13,8 @@ class GistBlob
       gf.name = 'File' if gf.name.blank?
     end
   end
-  
+
+  def blank?
+    self.blob.blank?
+  end
 end

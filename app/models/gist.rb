@@ -10,7 +10,7 @@ class Gist < ActiveRecord::Base
   validate :non_blank, :unique_names
 
   def non_blank
-    blank? and errors.add(:blob, "Can't be blank")
+    blank? and errors.add(:gist_blobs, "Can't be blank")
   end
 
   def gist_blobs
@@ -29,6 +29,6 @@ class Gist < ActiveRecord::Base
   def gist_blobs_attributes=(attrs)
     self.gist_blobs = attrs.map do |attr|
       GistBlob.from_params(attr)
-    end
+    end.reject(&:blank?)
   end
 end

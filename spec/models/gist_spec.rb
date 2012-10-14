@@ -9,7 +9,7 @@ describe Gist do
 
       it {should be_blank}
       it {should be_invalid}
-      it {should have(1).error_on(:blob) }
+      it {should have(1).error_on(:gist_blobs) }
     end
 
     context 'non blank' do
@@ -25,11 +25,21 @@ describe Gist do
 
     describe 'uniq names' do
       subject(:gist) do
-        gist_blobs = [{ blob: 1, name: '1'}, { blob: 2, name: '1'}]
+        gist_blobs = [{ blob: '1', name: '1'}, { blob: '2', name: '1'}]
         g = Gist.new(gist_blobs_attributes: gist_blobs)
       end
 
       it { should have(1).errors_on(:gist_blobs) }
+    end
+
+    describe 'blank blobs' do
+      subject(:gist) do
+        gist_blobs = [{ blob: '', name: '1'}, { blob: '', name: '1'}]
+        g = Gist.new(gist_blobs_attributes: gist_blobs)
+      end
+
+      it { should have(1).errors_on(:gist_blobs) }
+      it { should be_blank }
     end
 
   end
