@@ -13,6 +13,10 @@ class Gist < ActiveRecord::Base
     blank? and errors.add(:gist_blobs, "Can't be blank")
   end
 
+  def gist_blobs_attributes
+    @gist_blobs_attributes || []
+  end
+
   def gist_blobs
     @gist_blobs || []
   end
