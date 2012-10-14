@@ -4,8 +4,13 @@ class GistWriter
 
   class NothingToCommitError < StandardError; end
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(gist)
+    @gist = gist
+    @repo = gist.repo
+  end
+
+  def call
+    write(@gist.gist_blobs)
   end
 
   def write(blobs)

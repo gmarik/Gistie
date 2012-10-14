@@ -9,7 +9,6 @@ class CreateGist
   end
 
   def write(gist)
-    writer = GistWriter.new(gist)
-    writer.write(gist.gist_blobs)
+    GistWriter.new(gist).call
   end
 end

@@ -3,16 +3,17 @@ require 'spec_helper'
 describe GistWriter do
 
   let(:repo)   { temp_repo }
-  let(:writer) { GistWriter.new(repo) }
+  let(:gist) { mock_model(Gist, gist_blobs:[a_blob], repo: repo) }
+  let(:writer) { GistWriter.new(gist) }
   let(:a_blob) { mock(blob: "Holla!", name: "README.txt") }
 
   it "sets reference" do
-    writer.write([a_blob]).
+    writer.call.
       should == repo.head.target
   end
 
   it "writes blob" do
-    sha1 = writer.write([a_blob])
+    sha1 = writer.call
 
     repo.file_at(sha1, 'README.txt').
       should == "Holla!"
@@ -20,10 +21,10 @@ describe GistWriter do
 
   context 'duplicate commits' do
     it "raises NothingToCommitError" do
-      writer.write([a_blob])
+      writer.call
 
       lambda do
-        writer.write([a_blob])
+        writer.call
       end.should raise_error(GistWriter::NothingToCommitError)
     end
   end

@@ -27,10 +27,10 @@ describe CreateGist do
   it "writes to git" do
     GistWriter.
       should_receive(:new).
+      with(gist).
       and_return(writer = mock(:writer))
 
-    writer.should_receive(:write).
-      with(gist.gist_blobs)
+    writer.should_receive(:call)
 
     create_with_write.call(gist)
   end
