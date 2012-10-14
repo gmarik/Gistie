@@ -3,8 +3,13 @@ class CreateGist
     gist.transaction do
       gist.save!
       gist.init_repo
-      # gist.commit_content
+      write(gist)
     end
     gist
+  end
+
+  def write(gist)
+    writer = GistWriter.new(gist)
+    writer.write(gist.gist_blobs)
   end
 end

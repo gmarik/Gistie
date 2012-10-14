@@ -5,23 +5,33 @@ describe CreateGist do
      Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
   end
 
-  after :each do
-    `mv #{gist.repo.path} /tmp`
-  end
+  let(:create) {
+    c = CreateGist.new
+    c.stub(:write)
+    c
+  }
+
+  let(:create_with_write) { CreateGist.new }
 
   it "creates Gist" do
     lambda do
-      CreateGist.new.call(gist)
+      create.call(gist)
     end.should change(Gist, :count).by(1)
   end
 
   it "initializes repo" do
-    CreateGist.new.call(gist)
+    create.call(gist)
     gist.repo.should be_a(Rugged::Repository)
   end
 
-  xit "commits content" do
+  it "writes to git" do
+    GistWriter.
+      should_receive(:new).
+      and_return(writer = mock(:writer))
 
+    writer.should_receive(:write).
+      with(gist.gist_blobs)
+
+    create_with_write.call(gist)
   end
-
 end
