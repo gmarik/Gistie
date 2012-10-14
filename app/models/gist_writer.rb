@@ -14,10 +14,9 @@ class GistWriter
     }
 
     named_blob_oids = write_blobs(blobs)
-    tree_oid = write_tree(named_blob_oids)
-    commit_oid = write_commit(tree_oid, author)
-    set_master(commit_oid)
-    commit_oid
+    tree_oid        = write_tree(named_blob_oids)
+    commit_oid      = write_commit(tree_oid, author)
+    ref             = set_master(commit_oid)
   end
 
   def write_blobs(blobs)
