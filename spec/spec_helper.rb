@@ -13,6 +13,10 @@ def temp_repo
   Rugged::Repository.init_at(dir, true)
 end
 
+def fixture_repo_path(repo_name = 'test_repo')
+  Rails.root.join('spec/fixtures/').join(repo_name + '.git')
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

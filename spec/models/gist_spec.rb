@@ -45,12 +45,37 @@ describe Gist do
   end
 
   describe '.gist_blobs' do
-    subject(:gist) do
-      Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
+    context 'existing Gist' do
+      subject(:gist) do
+        g = Gist.new()
+        g.stub(:new_record? => false)
+        g.stub(:repo_path => fixture_repo_path)
+        g
+      end
+
+      it 'reads repo content with GistReader' do
+        gist.should_receive(:gist_read).and_return([:gist_content])
+        gist.gist_blobs.should == [:gist_content ]
+      end
+
     end
 
-    it { should be_valid }
-    it { should have(1).gist_blob }
+    context 'new Gist with blob_attributes set' do
+      subject(:gist) do
+        Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
+      end
+
+      it { should be_valid }
+      it { should have(1).gist_blob }
+    end
+
+    context 'new Gist' do
+      subject(:gist) { Gist.new }
+
+      it { should be_invalid }
+      it { should have(0).gist_blobs }
+    end
+
   end
 
   describe '.create' do
@@ -64,5 +89,9 @@ describe Gist do
 
   it "is a git repo" do
     Gist.should < GitRepo
+  end
+
+  it 'is a GistReader' do
+    Gist.should < GistReader
   end
 end

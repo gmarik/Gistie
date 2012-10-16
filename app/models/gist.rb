@@ -1,5 +1,6 @@
 class Gist < ActiveRecord::Base
   include GitRepo
+  include GistReader
 
   # TODO: rename this to gist_files instead gist_blobs
   # as blob is just content without filename
@@ -18,7 +19,17 @@ class Gist < ActiveRecord::Base
   end
 
   def gist_blobs
-    @gist_blobs || []
+    @gist_blobs ||= begin
+       if new_record? then []
+       else gist_read
+       end
+    end
+  end
+
+  def gist_read
+    repo_read.map do |params|
+      GistBlob.from_params(entry)
+    end
   end
 
   def unique_names
