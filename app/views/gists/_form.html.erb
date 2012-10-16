@@ -12,9 +12,11 @@
   <% end %>
 
   <div>
-    <%- n = 'gist[gist_blobs_attributes][]' %>
-    <%= blobs.text_field 'name', :name => "#{n}[name]" %>
-    <%= blobs.text_area 'blob', :name => "#{n}[blob]" %>
+    <%= fields_for(GistBlob.new) do |gf| -%>
+    <% n = 'gist[gist_blobs_attributes][]' -%>
+    <%= gf.text_field 'name', :name => "#{n}[name]" -%>
+    <%= gf.text_area 'blob', :name => "#{n}[blob]" -%>
+    <%- end -%>
   </div>
 
 
