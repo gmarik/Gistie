@@ -1,0 +1,26 @@
+#!/bin/bash
+
+txtred='[0;31m' # Red
+txtrst='[0m'     # Reset
+
+user=$(git config --local user.name)
+email=$(git config --local user.email)
+
+if [ "${user}" == "" -a "${name}" == "" ]; then
+  echo "${txtred}"
+
+  echo "You don't have user/email configured for this repo, please configure!"
+
+  U=$(git config --global user.name)
+  E=$(git config --global user.email)
+
+  echo "Using default '$U' <$E>"
+
+  `git config user.email $E`
+  `git config user.name $U`
+
+  echo ${txtrst}
+
+  exit 1
+fi
+
