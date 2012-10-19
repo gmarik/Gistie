@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe CreateGist do
+describe SaveGist do
   let(:gist) do
      Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
   end
 
   let(:create) {
-    c = CreateGist.new
+    c = SaveGist.new
     c.stub(:write)
     c
   }
 
-  let(:create_with_write) { CreateGist.new }
+  let(:create_with_write) { SaveGist.new }
 
   it "creates Gist" do
     lambda do
