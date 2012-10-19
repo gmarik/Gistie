@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+
+  <% @gist.gist_blobs.each do |gb| %>
+    <div>
+      <%= fields_for(gb) do |gf| -%>
+      <% n = "gist[gist_blobs_attributes][]" -%>
+      <%= gf.text_field 'name', :name => "#{n}[name]" -%>
+      <%= gf.text_area 'blob', :name => "#{n}[blob]" -%>
+      <%- end -%>
+    </div>
+  <% end %>
+
   <div>
     <%= fields_for(GistBlob.new) do |gf| -%>
     <% n = 'gist[gist_blobs_attributes][]' -%>

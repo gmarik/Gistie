@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<%- @gist.gist_blobs.each do |b| %>
+
+  <h1> <%= b.name %> </h1>
+  <pre><%= b.blob %> </pre>
+
+<% end %>
+
 
 <%= link_to 'Edit', edit_gist_path(@gist) %> |
 <%= link_to 'Back', gists_path %>
