@@ -27,8 +27,10 @@ class Gist < ActiveRecord::Base
   end
 
   def gist_read
-    repo_read.map do |params|
-      GistBlob.from_params(entry)
+    # TODO: make consitent
+    repo_read.map do |entry|
+      params = {name: entry[:name], blob: entry[:content]}
+      GistBlob.from_params(params)
     end
   end
 
