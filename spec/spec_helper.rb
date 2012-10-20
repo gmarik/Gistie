@@ -14,7 +14,7 @@ def temp_repo
 end
 
 def fixture_repo_path(repo_name = 'test_repo')
-  Rails.root.join('spec/fixtures/').join(repo_name + '.git')
+  Rails.root.join('spec/fixtures/').join(repo_name + '.git').to_s
 end
 
 RSpec.configure do |config|
