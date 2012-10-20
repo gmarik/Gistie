@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe SaveGist do
   let(:gist) do
-     Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
+    gist_blobs = [{ blob: 'Holla'}]
+    Gist.new(gist_blobs_attributes: gist_blobs)
   end
 
   let(:save) { SaveGist.new(gist) }
 
   let(:save_no_write) {
-    save.should_receive(:write)
+    gist.should_receive(:gist_write)
     save
   }
 
@@ -19,7 +20,8 @@ describe SaveGist do
     save_no_write
   }
 
-  context "new gist" do
+  context "create" do
+
     it "creates Gist" do
       -> { create.() }.
         should change(Gist, :count).by(1)
@@ -33,11 +35,12 @@ describe SaveGist do
     end
   end
 
-  context "existing gist" do
+  context "update" do
     it "updates attributes" do
+      blob = -> { gist.gist_blobs.first.blob }
       -> {
         update.(gist_blobs_attributes: [blob: "hi"])
-      }.should change(& -> { gist.gist_blobs.first.blob }).
+      }.should change(&blob).
         from("Holla").to("hi")
     end
 
@@ -47,15 +50,7 @@ describe SaveGist do
     end
   end
 
-
-  xit ".write" do
-    GistWriter.
-      should_receive(:new).
-      with(gist).
-      and_return(writer = mock(:writer))
-
-    writer.should_receive(:call)
-
-    save.()
+  it "returns gist" do
+    save_no_write.().should be_valid
   end
 end

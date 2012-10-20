@@ -10,12 +10,8 @@ class SaveGist
       # gist has to be persited at this point
       # as gist.id is used to generate repo's name
       @gist.init_repo if @gist.new_record?
-      write #async?
+      @gist.gist_write #async?
     end
     @gist
-  end
-
-  def write
-    GistWriter.new(@gist).()
   end
 end
