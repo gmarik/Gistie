@@ -1,4 +1,4 @@
-module GistRepoReader
+module RepoReader
   # TODO: make enumerable
   def repo_read(sha = repo.head.target)
     head = repo.lookup(sha)

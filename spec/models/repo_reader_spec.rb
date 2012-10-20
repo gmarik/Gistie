@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe GistRepoReader do
+describe RepoReader do
   subject do
     Class.new do
-      include GistRepoReader
+      include RepoReader
       def repo
         Rugged::Repository.new(fixture_repo_path)
       end
