@@ -1,6 +1,5 @@
 class Gist < ActiveRecord::Base
   include GitRepo
-  include GistReader
 
   # TODO: rename this to gist_files instead gist_blobs
   # as blob is just content without filename

@@ -48,7 +48,7 @@ describe SaveGist do
   end
 
 
-  it ".write" do
+  xit ".write" do
     GistWriter.
       should_receive(:new).
       with(gist).

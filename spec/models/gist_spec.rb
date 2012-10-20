@@ -90,8 +90,4 @@ describe Gist do
   it "is a git repo" do
     Gist.should < GitRepo
   end
-
-  it 'is a GistReader' do
-    Gist.should < GistReader
-  end
 end
