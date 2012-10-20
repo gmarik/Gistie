@@ -5,28 +5,51 @@ describe SaveGist do
      Gist.new(gist_blobs_attributes: [{blob: "Holla"}])
   end
 
-  let(:create) {
-    c = SaveGist.new
-    c.stub(:write)
-    c
+  let(:save) { SaveGist.new(gist) }
+
+  let(:save_no_write) {
+    save.should_receive(:write)
+    save
   }
 
-  let(:create_with_write) { SaveGist.new }
+  let(:create) { save_no_write }
 
-  it "creates Gist" do
-    lambda do
-      create.call(gist)
-    end.should change(Gist, :count).by(1)
+  let(:update) {
+    gist.stub!(new_record?: false)
+    save_no_write
+  }
+
+  context "new gist" do
+    it "creates Gist" do
+      lambda do
+        create.call
+      end.should change(Gist, :count).by(1)
+    end
+
+    it "initializes repo" do
+      lambda do
+        create.call
+      end.should change(gist, :repo).from(nil)
+      gist.repo.should be_a(Rugged::Repository)
+    end
   end
 
-  it "initializes repo" do
-    lambda do
-      create.call(gist)
-    end.should change(gist, :repo).from(nil)
-    gist.repo.should be_a(Rugged::Repository)
+  context "existing gist" do
+    it "updates attributes" do
+      blob = -> { gist.gist_blobs.first.blob }
+      lambda do
+        update.call(gist_blobs_attributes: [blob: "hi"])
+      end.should change(&blob).from("Holla").to("hi")
+    end
+
+    it "doesn't reinitialize repo" do
+      gist.should_not_receive(:init_repo)
+      update.call
+    end
   end
 
-  it "writes to git" do
+
+  it ".write" do
     GistWriter.
       should_receive(:new).
       with(gist).
@@ -34,6 +57,6 @@ describe SaveGist do
 
     writer.should_receive(:call)
 
-    create_with_write.call(gist)
+    save.call
   end
 end
