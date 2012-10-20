@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe GistBlob do
+  subject(:gist_file) { GistBlob.new }
 
   describe 'Validations' do
 
     context "invalid" do
-      subject(:gist_file) { GistBlob.new }
 
       it {should be_invalid}
       it {should have(1).error_on(:blob) }
@@ -21,8 +21,12 @@ describe GistBlob do
       it {should be_valid}
       it {should have(0).errors }
     end
+
   end
 
+  describe "Defaults" do
+    its(:name) { should == 'Text' }
+  end
 
   describe ".from_params" do
 
@@ -31,14 +35,8 @@ describe GistBlob do
     end
 
     it { should be_valid }
+    its(:name) { should == "name.md" }
+    its(:blob) { should == "Holla" }
 
-    it "sets name" do
-      gist_file.name.should == "name.md"
-    end
-
-    it "sets blob" do
-      gist_file.blob.should == "Holla"
-    end
   end
-
 end

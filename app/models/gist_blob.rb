@@ -13,6 +13,10 @@ class GistBlob
     end
   end
 
+  def name
+    @name || 'Text'
+  end
+
   def blank?
     self.blob.blank?
   end
