@@ -3,9 +3,9 @@ class SaveGist
     @gist = gist
   end
 
-  def call(new_attributes = {})
+  def call(update_attributes = {})
     @gist.transaction do
-      @gist.assign_attributes(new_attributes)
+      @gist.assign_attributes(update_attributes)
       @gist.save!
       # gist has to be persited at this point
       # as gist.id is used to generate repo's name
