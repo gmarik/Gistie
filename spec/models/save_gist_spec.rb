@@ -29,7 +29,7 @@ describe SaveGist do
       -> { create.() }.
         should change(gist, :repo).from(nil)
 
-      gist.repo.should be_a(Rugged::Repository)
+      gist.repo.should be_a(GistRepo)
     end
   end
 

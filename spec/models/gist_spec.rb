@@ -85,9 +85,4 @@ describe Gist do
       end.should change(Gist, :count).by(1)
     end
   end
-
-
-  it "is a git repo" do
-    Gist.should < GitRepo
-  end
 end

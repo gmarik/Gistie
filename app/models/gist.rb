@@ -1,5 +1,4 @@
 class Gist < ActiveRecord::Base
-  include GitRepo
 
   # TODO: rename this to gist_files instead gist_blobs
   # as blob is just content without filename
@@ -11,6 +10,17 @@ class Gist < ActiveRecord::Base
 
   def non_blank
     blank? and errors.add(:gist_blobs, "Can't be blank")
+  end
+
+
+  def repo_path(root = Rails.root)
+    root + 'repos/' + (self.id.to_s + ".git")
+  end
+
+  def repo
+    if new_record? then nil
+    else @repo ||= GistRepo.new(repo_path)
+    end
   end
 
   def gist_blobs_attributes
