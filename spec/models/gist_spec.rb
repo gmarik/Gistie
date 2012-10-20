@@ -14,9 +14,7 @@ describe Gist do
 
     context 'non blank' do
       subject(:gist) do
-        g = Gist.new
-        g.stub!(blank?: false)
-        g
+        Gist.new(gist_blobs_attributes: [{blob: "holla!"}])
       end
 
       it { should_not be_blank }
@@ -46,16 +44,23 @@ describe Gist do
 
   describe '.gist_blobs' do
     context 'existing Gist' do
+      let(:gist_blob) {
+        {name: 'file', content: 'holla!', blob: 'holla!'}
+      }
+
+      let(:fake_repo) {
+        mock(:Repo, repo_read: [{name: 'file', content: 'holla!'}])
+      }
+
       subject(:gist) do
         g = Gist.new()
-        g.stub(:new_record? => false)
-        g.stub(:repo_path => fixture_repo_path)
+        g.stub!(new_record?: false )
+        g.stub!(repo: fake_repo )
         g
       end
 
-      it 'reads repo content with GistReader' do
-        gist.should_receive(:gist_read).and_return([:gist_content])
-        gist.gist_blobs.should == [:gist_content ]
+      it 'reads repo content' do
+        gist.gist_blobs == [gist_blob]
       end
 
     end
@@ -66,7 +71,7 @@ describe Gist do
       end
 
       it { should be_valid }
-      it { should have(1).gist_blob }
+      it { should have(1).gist_blobs }
     end
 
     context 'new Gist' do
