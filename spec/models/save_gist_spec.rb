@@ -21,25 +21,24 @@ describe SaveGist do
 
   context "new gist" do
     it "creates Gist" do
-      lambda do
-        create.call
-      end.should change(Gist, :count).by(1)
+      -> { create.call }.
+        should change(Gist, :count).by(1)
     end
 
     it "initializes repo" do
-      lambda do
-        create.call
-      end.should change(gist, :repo).from(nil)
+      -> { create.call }.
+        should change(gist, :repo).from(nil)
+
       gist.repo.should be_a(Rugged::Repository)
     end
   end
 
   context "existing gist" do
     it "updates attributes" do
-      blob = -> { gist.gist_blobs.first.blob }
-      lambda do
+      -> {
         update.call(gist_blobs_attributes: [blob: "hi"])
-      end.should change(&blob).from("Holla").to("hi")
+      }.should change(& -> { gist.gist_blobs.first.blob }).
+        from("Holla").to("hi")
     end
 
     it "doesn't reinitialize repo" do
