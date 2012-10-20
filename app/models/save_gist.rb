@@ -16,6 +16,6 @@ class SaveGist
   end
 
   def write
-    GistWriter.new(@gist).call
+    GistWriter.new(@gist).()
   end
 end

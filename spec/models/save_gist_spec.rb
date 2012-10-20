@@ -21,12 +21,12 @@ describe SaveGist do
 
   context "new gist" do
     it "creates Gist" do
-      -> { create.call }.
+      -> { create.() }.
         should change(Gist, :count).by(1)
     end
 
     it "initializes repo" do
-      -> { create.call }.
+      -> { create.() }.
         should change(gist, :repo).from(nil)
 
       gist.repo.should be_a(Rugged::Repository)
@@ -36,14 +36,14 @@ describe SaveGist do
   context "existing gist" do
     it "updates attributes" do
       -> {
-        update.call(gist_blobs_attributes: [blob: "hi"])
+        update.(gist_blobs_attributes: [blob: "hi"])
       }.should change(& -> { gist.gist_blobs.first.blob }).
         from("Holla").to("hi")
     end
 
     it "doesn't reinitialize repo" do
       gist.should_not_receive(:init_repo)
-      update.call
+      update.()
     end
   end
 
@@ -56,6 +56,6 @@ describe SaveGist do
 
     writer.should_receive(:call)
 
-    save.call
+    save.()
   end
 end
