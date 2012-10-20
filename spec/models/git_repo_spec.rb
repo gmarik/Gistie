@@ -6,18 +6,18 @@ describe GistRepo do
     GistRepo.new(*args)
   end
 
+  subject { r(fixture_repo_path) }
+
   describe '.new' do
     it 'accepts path' do
-      r('path').path.should == 'path'
+      r(fixture_repo_path).path.
+        should == fixture_repo_path
     end
   end
 
-  describe '.repo' do
-    subject { GistRepo.new(fixture_repo_path.to_s) }
-    its(:repo) { should be_a(Rugged::Repository) }
-  end
+  its(:path) { should == fixture_repo_path }
+  its(:repo) { should be_a(Rugged::Repository) }
 
-  xit { r('path').should be_a(GistRepoReader) }
-  xit { r('path').should be_a(GistRepoWriter) }
-
+  it { should be_a(RepoReader) }
+  it { should be_a(RepoWriter) }
 end

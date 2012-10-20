@@ -1,5 +1,7 @@
 class GistRepo
   include Rugged
+  include RepoReader
+  include RepoWriter
 
   attr_accessor :path
 
