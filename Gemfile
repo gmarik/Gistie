@@ -25,7 +25,13 @@ gem 'jquery-rails'
 
 gem 'rugged', '0.17.0.b6'
 
-gem 'rspec-rails', group: [:test]
+
+group :test, :development do
+  gem 'rspec-rails'
+
+  gem "capybara"
+  gem "poltergeist"
+end
 
 
 # To use ActiveModel has_secure_password
