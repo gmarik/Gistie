@@ -91,6 +91,20 @@ describe Gist do
     end
   end
 
+  describe '.init_repo' do
+    let (:gist) {
+      g = Gist.new
+      g.stub!(repo_name: :a_name)
+      g
+    }
+
+    it 'initializes repo' do
+      GistRepo.should_receive(:init_named_repo).with(:a_name)
+      gist.init_repo
+    end
+    
+  end
+
   describe '.save_and_commit!' do
     let (:gist) { Gist.new }
 

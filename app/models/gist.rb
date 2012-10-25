@@ -45,18 +45,18 @@ class Gist < ActiveRecord::Base
     SaveGist.new(self).(update_attrs)
   end
 
-  def repo_path(root = Rails.root)
-    root + 'repos/' + (self.id.to_s + ".git")
+  def repo_name
+    id.to_s
   end
 
   def repo
     if new_record? then nil
-    else @repo ||= GistRepo.new(repo_path.to_s)
+    else @repo ||= GistRepo.named(repo_name)
     end
   end
 
   def init_repo
-    GistRepo.init_at(repo_path)
+    GistRepo.init_named_repo(repo_name)
   end
 
   def gist_read
