@@ -41,6 +41,10 @@ class Gist < ActiveRecord::Base
     end
   end
 
+  def save_and_commit!(update_attrs = {})
+    SaveGist.new(self).(update_attrs)
+  end
+
   def repo_path(root = Rails.root)
     root + 'repos/' + (self.id.to_s + ".git")
   end

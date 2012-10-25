@@ -90,4 +90,18 @@ describe Gist do
       end.should change(Gist, :count).by(1)
     end
   end
+
+  describe '.save_and_commit!' do
+    let (:gist) { Gist.new }
+
+    it 'delegates to SaveGist' do
+      SaveGist.should_receive(:new).with(gist).
+        and_return(save = mock(:save))
+
+      save.should_receive(:call).
+        and_return(gist)
+
+      gist.save_and_commit!
+    end
+  end
 end
