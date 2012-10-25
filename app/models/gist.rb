@@ -12,10 +12,6 @@ class Gist < ActiveRecord::Base
     blank? and errors.add(:gist_blobs, "Can't be blank")
   end
 
-  def gist_blobs_attributes
-    @gist_blobs_attributes || []
-  end
-
   def unique_names
     uniq = (gist_blobs.size == gist_blobs.map(&:name).uniq.size)
     uniq or errors.add(:gist_blobs, "Duplicate names")
@@ -23,6 +19,11 @@ class Gist < ActiveRecord::Base
 
   def blank?
     gist_blobs.blank?
+  end
+
+
+  def gist_blobs_attributes
+    @gist_blobs_attributes || []
   end
 
   def gist_blobs_attributes=(attrs)
