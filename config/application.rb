@@ -64,5 +64,8 @@ module Gitsy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # default repo_path
+    config.repo_root = Rails.root + "repos_#{Rails.env}"
   end
 end

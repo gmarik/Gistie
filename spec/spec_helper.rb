@@ -16,6 +16,9 @@ def fixture_repo_path(repo_name = 'test_repo')
   Rails.root.join('spec/fixtures/').join(repo_name + '.git/').to_s
 end
 
+# Set root
+Rails.configuration.repo_root = Dir.mktmpdir('test_dir')
+
 RSpec.configure do |config|
   config.mock_with :rspec
   # TODO:

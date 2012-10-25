@@ -21,7 +21,7 @@ class GistRepo
     new(repo_path(name))
   end
 
-  def self.repo_path(name, root = Rails.root)
-    (root + 'repos/' + ( name + ".git/")).to_s
+  def self.repo_path(name, root = Rails.configuration.repo_root)
+    (root + ( name + ".git/")).to_s
   end
 end
