@@ -6,10 +6,12 @@ class SaveGist
   def call(update_attributes = {})
     @gist.transaction do
       @gist.assign_attributes(update_attributes)
+
+      init_repo = @gist.new_record?
       @gist.save!
       # gist has to be persited at this point
       # as gist.id is used to generate repo's name
-      @gist.init_repo if @gist.new_record?
+      @gist.init_repo if init_repo
       @gist.gist_write #async?
     end
     @gist

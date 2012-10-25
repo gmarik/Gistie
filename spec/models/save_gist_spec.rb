@@ -13,29 +13,30 @@ describe SaveGist do
     save
   }
 
-  let(:create) { save_no_write }
-
-  let(:update) {
-    gist.stub!(new_record?: false)
-    save_no_write
-  }
-
   context "create" do
 
+    let(:create) {
+      save_no_write 
+    }
+
     it "creates Gist" do
-      -> { create.() }.
-        should change(Gist, :count).by(1)
+      create.should change(Gist, :count).by(1)
     end
 
     it "initializes repo" do
-      -> { create.() }.
-        should change(gist, :repo).from(nil)
+      create.should change(gist, :repo).from(nil)
 
       gist.repo.should be_a(GistRepo)
     end
   end
 
   context "update" do
+
+    let(:update) {
+      gist.stub!(new_record?: false)
+      save_no_write
+    }
+
     it "updates attributes" do
       blob = -> { gist.gist_blobs.first.blob }
       -> {
