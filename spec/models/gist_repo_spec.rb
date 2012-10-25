@@ -20,4 +20,22 @@ describe GistRepo do
 
   it { should be_a(RepoReader) }
   it { should be_a(RepoWriter) }
+
+  describe '.named' do
+    subject(:repo) { GistRepo.named('hello') }
+    its(:path){ should == GistRepo.repo_path('hello') }
+  end
+
+  describe '.init_named_repo' do
+
+    it "initializes named repository at given path" do
+
+      Rugged::Repository.
+        should_receive(:init_at).
+        with(GistRepo.repo_path('a_name'), true)
+
+      GistRepo.init_named_repo('a_name')
+    end
+
+  end
 end
