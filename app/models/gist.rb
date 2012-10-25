@@ -55,6 +55,10 @@ class Gist < ActiveRecord::Base
     end
   end
 
+  def init_repo
+    GistRepo.init_at(repo_path)
+  end
+
   def gist_read
     repo.repo_read.map(&method(:gist_blob))
   end

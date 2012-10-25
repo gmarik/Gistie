@@ -12,4 +12,8 @@ class GistRepo
   def repo
     @repo ||= Repository.new(@path)
   end
+
+  def self.init_at(path, bare = true)
+    Repository.init_at(path.to_s, bare)
+  end
 end
