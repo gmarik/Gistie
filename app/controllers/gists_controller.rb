@@ -20,7 +20,7 @@ class GistsController < ApplicationController
   def create
     @gist = Gist.new(params[:gist])
 
-    if CreateGist.new.call(@gist)
+    if @gist.save_and_commit!.valid?
       redirect_to @gist, notice: 'Gist was successfully created.'
     else
       render action: "new"
