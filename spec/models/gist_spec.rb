@@ -118,4 +118,9 @@ describe Gist do
       gist.save_and_commit!
     end
   end
+
+  describe 'destroy_with_repo' do
+    it 'destroys record'
+    it 'removes repository'
+  end
 end
