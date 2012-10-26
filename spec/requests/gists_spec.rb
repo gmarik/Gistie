@@ -70,16 +70,22 @@ describe GistsController do
   end
 
   describe '.update' do
-    before :each do
-      gist = create_gist
-      visit edit_gist_path(gist)
-      fill_gist('new_name.txt', blob = 'hey')
-      page.click_button('Update Gist')
+    context 'with invalid input' do
+      xit { should have_content('validation failed') }
     end
 
-    it { should have_content('Gist was successfully updated') }
-    it { should have_content('hey') }
-    it { should have_content('new_name.txt') }
+    context 'with valid input' do
+      before :each do
+        gist = create_gist
+        visit edit_gist_path(gist)
+        fill_gist('new_name.txt', blob = 'hey')
+        page.click_button('Update Gist')
+      end
+
+      it { should have_content('Gist was successfully updated') }
+      it { should have_content('hey') }
+      it { should have_content('new_name.txt') }
+    end
   end
 
   describe '.destroy' do
@@ -92,4 +98,5 @@ describe GistsController do
 
     it { should have_content('Gist was successfully deleted') }
   end
+
 end
