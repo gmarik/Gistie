@@ -2,19 +2,18 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>id </th>
+    <th>actions </th>
   </tr>
 
 <% @gists.each do |gist| %>
 
-  <tr>
+  <tr class="gist" data-gist_id="<%= gist.id %>">
     <td><%= gist.id %> </td>
-    <td><%= link_to 'Show', gist %></td>
-    <td><%= link_to 'Edit', edit_gist_path(gist) %></td>
-    <td><%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', gist %>
+        <%= link_to 'Edit', edit_gist_path(gist) %>
+        <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
   </tr>
 <% end %>
 </table>

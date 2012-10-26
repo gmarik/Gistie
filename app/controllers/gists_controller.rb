@@ -29,9 +29,8 @@ class GistsController < ApplicationController
 
   def update
     @gist = Gist.find(params[:id])
-    @gist.assign_attributes(params[:gist])
 
-    if CreateGist.new.call(@gist).valid?
+    if @gist.save_and_commit!(params[:gist]).valid?
       redirect_to @gist, notice: 'Gist was successfully updated.'
     else
       render action: "edit"
@@ -40,8 +39,9 @@ class GistsController < ApplicationController
 
   def destroy
     @gist = Gist.find(params[:id])
+
     @gist.destroy
 
-    format.html { redirect_to gists_url }
+    redirect_to gists_url, notice: 'Gist was successfully deleted'
   end
 end
