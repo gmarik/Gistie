@@ -17,7 +17,7 @@ def fixture_repo_path(repo_name = 'test_repo')
 end
 
 Cleanup = ->(spec) do
-  git_repos = Rails.configuration.repo_root + '*.git'
+  git_repos = Rails.configuration.repo_root + '*.git/'
   Dir[git_repos].each do |dir|
     FileUtils.rm_rf(dir)
   end
