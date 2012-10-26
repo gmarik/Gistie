@@ -41,6 +41,15 @@ class Gist < ActiveRecord::Base
     end
   end
 
+  def save_and_commit(*args)
+    begin
+      save_and_commit!(*args) 
+      true
+    rescue ActiveRecord::RecordInvalid => e
+      false
+    end
+  end
+
   def save_and_commit!(update_attrs = {})
     SaveGist.new(self).(update_attrs)
   end

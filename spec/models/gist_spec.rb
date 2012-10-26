@@ -105,19 +105,43 @@ describe Gist do
     
   end
 
+  # TODO: refactor
+  # - violates single responsibility
+  # - tests for return values and integration with SaveGist
   describe '.save_and_commit!' do
     let (:gist) { Gist.new }
 
-    it 'delegates to SaveGist' do
-      SaveGist.should_receive(:new).with(gist).
-        and_return(save = mock(:save))
+    context 'valid record' do
+      subject(:gist)
 
-      save.should_receive(:call).
-        and_return(gist)
+      before :each do
+        SaveGist.should_receive(:new).with(gist).
+          and_return(save = mock(:save))
 
-      gist.save_and_commit!
+        save.should_receive(:call).
+          and_return(gist)
+      end
+
+      it 'raises no error' do
+        -> { gist.save_and_commit! }.should_not raise_error
+      end
+
+      its(:save_and_commit) { should be_true }
+    end
+
+
+    context 'invalid record' do
+      subject { gist }
+      it { should be_invalid }
+
+      its(:save_and_commit) { should be_false }
+      its('save_and_commit!') do
+        proc { subject.save_and_commit! }.
+          should raise_error(ActiveRecord::RecordInvalid)
+      end
     end
   end
+
 
   describe 'destroy_with_repo' do
     it 'destroys record'

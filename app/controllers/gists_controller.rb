@@ -20,7 +20,7 @@ class GistsController < ApplicationController
   def create
     @gist = Gist.new(params[:gist])
 
-    if @gist.save_and_commit!.valid?
+    if @gist.save_and_commit
       redirect_to @gist, notice: 'Gist was successfully created.'
     else
       render action: "new"
@@ -30,7 +30,7 @@ class GistsController < ApplicationController
   def update
     @gist = Gist.find(params[:id])
 
-    if @gist.save_and_commit!(params[:gist]).valid?
+    if @gist.save_and_commit(params[:gist])
       redirect_to @gist, notice: 'Gist was successfully updated.'
     else
       render action: "edit"
