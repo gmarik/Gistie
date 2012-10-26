@@ -44,6 +44,8 @@ describe Gist do
 
   describe '.gist_blobs' do
     context 'existing Gist' do
+      # TODO: refactor
+      # content/blob duplication
       let(:gist_blob) {
         {name: 'file', content: 'holla!', blob: 'holla!'}
       }
