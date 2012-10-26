@@ -16,8 +16,15 @@ def fixture_repo_path(repo_name = 'test_repo')
   Rails.root.join('spec/fixtures/').join(repo_name + '.git/').to_s
 end
 
+Cleanup = ->(spec) do
+  git_repos = Rails.configuration.repo_root + '*.git'
+  Dir[git_repos].each do |dir|
+    FileUtils.rm_rf(dir)
+  end
+end
+
 # Set root
-Rails.configuration.repo_root = Dir.mktmpdir('test_dir')
+# Rails.configuration.repo_root = Dir.mktmpdir('test_dir')
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -26,6 +33,11 @@ RSpec.configure do |config|
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  # cleanup after
+  # TODO: refactor into more granular control
+  # as this is a sign of a mess
+  config.after(:each, &Cleanup)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
