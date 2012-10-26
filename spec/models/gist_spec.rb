@@ -105,6 +105,16 @@ describe Gist do
     
   end
 
+  # TODO: doesn't belong here
+  describe '.dup_names' do
+    let(:gist_blob) { {name: 'file', blob: 'holla!'} }
+    subject(:gist) { Gist.new(gist_blobs_attributes: [gist_blob, gist_blob]) }
+
+    it 'returns duplicates' do
+      subject.send(:dup_names, gist.gist_blobs).should == [['file', 2]]
+    end
+  end
+
   # TODO: refactor
   # - violates single responsibility
   # - tests for return values and integration with SaveGist

@@ -13,9 +13,20 @@ class Gist < ActiveRecord::Base
   end
 
   def unique_names
-    uniq = (gist_blobs.size == gist_blobs.map(&:name).uniq.size)
-    uniq or errors.add(:gist_blobs, "Duplicate names")
+    dups = dup_names(gist_blobs).map {|name, count| %Q["#{name}": #{count}] }
+    dups.empty? or
+      errors.add(:gist_blobs, "duplicate names: #{dups.join(',')}")
   end
+
+  def dup_names(blobs)
+    duplicates = blobs.map(&:name).
+      group_by {|b| b }.
+      values.
+      map {|b| [b.first, b.size]}.
+      select {|name, count| count > 1}
+  end
+
+  private :dup_names
 
   def blank?
     gist_blobs.blank?
