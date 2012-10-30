@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+gem 'rugged', '0.17.0.b6'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,10 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-
-gem 'rugged', '0.17.0.b6'
-
+gem 'twitter-bootstrap-rails'
 
 group :test, :development do
   gem 'rspec-rails'
