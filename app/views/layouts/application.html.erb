@@ -44,12 +44,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Gitsy</a>
+          <a class="brand" href="">Gitsy</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "About", "/gists"  %></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li><%= link_to "Gists", "/gists"  %></li>
+              <li><%= link_to "New Gist", "/gists/new" %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -57,6 +59,7 @@
     </div>
 
     <div class="container">
+
         <div class="row">
           <div class="span9">
              <%= yield %>
