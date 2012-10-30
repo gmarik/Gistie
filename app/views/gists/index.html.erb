@@ -1,5 +1,11 @@
 <h1>Gists</h1>
 
+<% if @gists.empty? %>
+
+  be the first to <%= link_to "create one", [:new, :gist] %>
+
+<% else %>
+
 <table>
   <tr>
     <th>id </th>
@@ -17,3 +23,4 @@
   </tr>
 <% end %>
 </table>
+<% end %>
