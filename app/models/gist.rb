@@ -57,6 +57,7 @@ class Gist < ActiveRecord::Base
       save_and_commit!(*args) 
       true
     rescue ActiveRecord::RecordInvalid => e
+      # TODO: log e
       false
     end
   end
