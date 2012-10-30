@@ -46,12 +46,13 @@
           </a>
           <a class="brand" href="">Gitsy</a>
           <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "About", "/gists"  %></li>
-            </ul>
-            <ul class="nav pull-right">
+            <ul class="nav ">
               <li><%= link_to "Gists", "/gists"  %></li>
               <li><%= link_to "New Gist", "/gists/new" %></li>
+            </ul>
+
+            <ul class="nav pull-right">
+              <li><%= link_to "About", "/gists"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -77,7 +78,9 @@
           </div><!--/span-->
         </div><!--/row-->
 
-      <footer>
+      <hr />
+
+      <footer class="pull-right">
       <p>&copy; <a href="http://github.com/gmarik">gmarik</a> 2012</p>
       </footer>
 
