@@ -1,12 +1,18 @@
+<h1> Gist #<%= @gist.id %> </h1>
 
-<%- @gist.gist_blobs.each do |b| %>
+<p>
+  <%= link_to 'Edit', edit_gist_path(@gist), class: 'btn btn-primary' %>
+  <%= link_to 'Destroy', @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
 
-  <h1> <%= b.name %> </h1>
-  <pre><%= b.blob %> </pre>
+<div class="well">
 
-<% end %>
+  <%- @gist.gist_blobs.each do |b| %>
 
+    <h1> <%= b.name %> </h1>
+    <pre><%= b.blob %> </pre>
 
-<%= link_to 'Edit', edit_gist_path(@gist) %>
-| <%= link_to 'Destroy', @gist, method: :delete, data: { confirm: 'Are you sure?' } %>
-| <%= link_to 'Back', gists_path %>
+  <% end %>
+
+</div>
+
