@@ -4,7 +4,7 @@ class Gist < ActiveRecord::Base
   # as blob is just content without filename
   attr_accessor :gist_blobs, :gist_blobs_attributes
 
-  attr_accessible :gist_blobs_attributes
+  attr_accessible :gist_blobs_attributes, :description
 
   validate :non_blank, :unique_names
 
