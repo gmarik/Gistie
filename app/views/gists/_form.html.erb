@@ -1,4 +1,5 @@
 <%= form_for(@gist) do |f| %>
+  <fieldset>
   <% if @gist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gist.errors.count, "error") %> prohibited this gist from being saved:</h2>
@@ -11,28 +12,49 @@
     </div>
   <% end %>
 
-      <%= f.text_field 'description', class: 'input-xlarge' -%>
-
-  <% @gist.gist_blobs.each do |gb| %>
-    <div>
-      <%= fields_for(gb) do |gf| -%>
-      <% n = "gist[gist_blobs_attributes][]" -%>
-      <%= gf.text_field 'name', :name => "#{n}[name]" -%>
-      <%= gf.text_area 'blob', :name => "#{n}[blob]" -%>
-      <%- end -%>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.text_field 'description', title: 'gist description', placeholder: 'description', class: 'input-xlarge' -%>
     </div>
-  <% end %>
-
-  <div>
-    <%= fields_for(GistBlob.new) do |gf| -%>
-    <% n = 'gist[gist_blobs_attributes][]' -%>
-    <%= gf.text_field 'name', :name => "#{n}[name]" -%>
-    <%= gf.text_area 'blob', :name => "#{n}[blob]" -%>
-    <%- end -%>
   </div>
 
+  <% @gist.gist_blobs.each do |gb| %>
+    <% n = "gist[gist_blobs_attributes][]" -%>
+    <%= fields_for(gb) do |gf| -%>
+      <div class="control-group">
+        <div class="controls">
+          <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
+        </div>
+      </div>
 
-  <div class="actions">
+      <div class="control-group">
+        <div class="controls">
+        <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
+        </div>
+      </div>
+    <%- end -%>
+  <% end %>
+
+  <%= fields_for(GistBlob.new) do |gf| -%>
+    <% n = "gist[gist_blobs_attributes][]" -%>
+    <div class="control-group">
+      <div class="controls">
+        <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
+      </div>
+    </div>
+
+  <%- end -%>
+
+</fieldset>
+
+
+  <div class="form-actions actions">
     <%= f.submit %>
   </div>
 <% end %>
