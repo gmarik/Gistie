@@ -54,4 +54,32 @@ describe SaveGist do
   it "returns gist" do
     save_no_write.().should be_valid
   end
+
+
+
+  # This exception is to prevent empty commits
+  # so when Gist decription gets updated it has to be ignored
+  context "NothingToCommit" do
+
+    let(:gist) {
+      mock(:gist,
+           assign_attributes: true,
+           new_record?: true,
+           save!: true,
+           init_repo: true,
+          )
+    }
+
+
+    let(:update) {
+      gist.should_receive(:transaction).and_yield
+      gist.should_receive(:gist_write).and_raise(RepoWriter::NothingToCommitError)
+      SaveGist.new(gist)
+    }
+
+    it "ignores exception" do
+      -> { update.() }.
+        should_not raise_error(RepoWriter::NothingToCommitError)
+    end
+  end
 end
