@@ -18,23 +18,21 @@ class HighlightedSource
   alias_method :call, :highlight
 
   def to_html
-    highlight.join("\n")
+    highlight.join('')
   end
 
   def to_table_html
     src = highlight
 
     lns = line_numbers(src.size - 2).join("\n")
-    code = src.join("\n")
+    code = src.join('')
 
     html = <<-HTML.strip_heredoc
       <table cellpadding="0" cellspacing="0">
         <tbody>
           <tr>
             <th>
-              <pre>
-                #{lns}
-              </pre>
+              <pre>#{lns}</pre>
             </th>
             <td width="100%">
               #{code}
@@ -54,7 +52,7 @@ class HighlightedSource
   end
 
   def wrap_lines(pygments_html)
-    from = pygments_html.index('<span ')
+    from = pygments_html.index('<pre>') + 5
     to = "</pre></div>".size
 
     pre = pygments_html[0...from]

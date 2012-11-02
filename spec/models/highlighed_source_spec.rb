@@ -12,10 +12,7 @@ describe HighlightedSource do
 
   it "highlights code" do
     subject.to_html.should == <<-HTML.strip_heredoc.chomp
-      <div class="highlight"><pre>      
-      <div class="line"> <span class="nb">puts</span> <span class="s1">&#39;hi&#39;</span> </div>
-      <div class="line">       <span class="nb">puts</span> <span class="s1">&#39;world&#39;</span> </div>
-      </pre></div>
+      <div class="highlight"><pre><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;hi&#39;</span> </div><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;world&#39;</span> </div></pre></div>
     HTML
   end
 
@@ -26,16 +23,11 @@ describe HighlightedSource do
         <tbody>
           <tr>
             <th>
-              <pre>
-                <span id="LID1" rel="#L1">1</span>
-<span id="LID2" rel="#L2">2</span>
-              </pre>
+              <pre><span id="LID1" rel="#L1">1</span>
+<span id="LID2" rel="#L2">2</span></pre>
             </th>
             <td width="100%">
-              <div class="highlight"><pre>      
-<div class="line"> <span class="nb">puts</span> <span class="s1">&#39;hi&#39;</span> </div>
-<div class="line">       <span class="nb">puts</span> <span class="s1">&#39;world&#39;</span> </div>
-</pre></div>
+              <div class="highlight"><pre><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;hi&#39;</span> </div><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;world&#39;</span> </div></pre></div>
             </td>
           </tr>
         </tbody>
