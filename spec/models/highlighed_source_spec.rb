@@ -11,14 +11,14 @@ describe HighlightedSource do
 
 
   it "highlights code" do
-    subject.to_html.should == <<-HTML.strip_heredoc.chomp
+    subject.to_highlighted_html.should == <<-HTML.strip_heredoc.chomp
       <div class="highlight"><pre><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;hi&#39;</span> </div><div class="line">       <span class="nb">puts</span> <span class="s1">&#39;world&#39;</span> </div></pre></div>
     HTML
   end
 
 
   it "highlights numbered code " do
-    subject.to_table_html.should == <<-HTML.strip_heredoc
+    subject.to_formatted_html.should == <<-HTML.strip_heredoc
       <table cellpadding="0" cellspacing="0">
         <tbody>
           <tr>

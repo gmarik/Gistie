@@ -17,11 +17,11 @@ class HighlightedSource
   end
   alias_method :call, :highlight
 
-  def to_html
+  def to_highlighted_html
     highlight.join('')
   end
 
-  def to_table_html
+  def to_formatted_html
     src = highlight
 
     lns = line_numbers(src.size - 2).join("\n")
