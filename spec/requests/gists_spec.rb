@@ -35,8 +35,8 @@ describe GistsController do
 
     before(:each) { visit gist_path(a_gist) }
 
-    it { should have_selector("h1", :text => a_blob.name)   }
-    it { should have_selector("pre", :text => a_blob.blob)  }
+    it { should have_selector("div", :text => a_blob.name)   }
+    xit { should have_selector("data.syntax", :text => a_blob.blob)  }
   end
 
   describe '.new' do
