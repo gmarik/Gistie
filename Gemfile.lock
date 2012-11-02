@@ -86,6 +86,10 @@ GEM
       http_parser.rb (~> 0.5.3)
       multi_json (~> 1.0)
     polyglot (0.3.3)
+    posix-spawn (0.3.6)
+    pygments.rb (0.3.2)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -159,6 +163,7 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -168,6 +173,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   poltergeist
+  pygments.rb
   rails (= 3.2.8)
   rspec-rails
   rugged (= 0.17.0.b6)

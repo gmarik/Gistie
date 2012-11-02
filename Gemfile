@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 
 gem 'rugged', '0.17.0.b6'
+gem 'pygments.rb'
 
 # Gems used only for assets and not required
 # in production environments by default.
