@@ -78,8 +78,7 @@ describe SaveGist do
     }
 
     it "ignores exception" do
-      -> { update.() }.
-        should_not raise_error(RepoWriter::NothingToCommitError)
+      -> { update.() }.should_not raise_error
     end
   end
 end

@@ -14,8 +14,9 @@ class SaveGist
       @gist.init_repo if init_repo
       begin
         @gist.gist_write #async?
-      rescue GistWriter::NothingToCommitError => e
+      rescue RepoWriter::NothingToCommitError => e
         # TODO: log it
+        Rails.logger.warn("Nothing to commit")
       end
     end
     @gist
