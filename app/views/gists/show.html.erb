@@ -5,12 +5,12 @@
   <%= link_to 'Destroy', @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
-<div class="well">
+<div >
 
   <%- @gist.gist_blobs.each do |b| %>
 
-    <h1> <%= b.name %> </h1>
-    <pre><%= b.blob %> </pre>
+    <div> <%= b.name %> </div>
+    <div class="data syntax"> <%= b.to_formatted_html %> </div>
 
   <% end %>
 

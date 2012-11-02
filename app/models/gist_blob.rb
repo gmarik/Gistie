@@ -20,4 +20,9 @@ class GistBlob
   def blank?
     self.blob.blank?
   end
+
+  # TODO: rename to something more meaningful
+  def to_formatted_html
+    HighlightedSource.new(name, blob).to_formatted_html.html_safe
+  end
 end
