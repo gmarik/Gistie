@@ -7,8 +7,8 @@ class HighlightedSource
   def lexer
     case @filename
     when /\.rb/     then :ruby
-    when /\.md/     then :markdown
-    else                 :plain
+    # when /\.md/     then :markdown
+    else                 :text
     end
   end
 
