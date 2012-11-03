@@ -22,7 +22,14 @@ class GistBlob
   end
 
   # TODO: rename to something more meaningful
-  def to_formatted_html
-    HighlightedSource.new(name, blob).to_formatted_html.html_safe
+  def to_formatted_html(excerpt = false, limit = 4)
+
+    _blob = if excerpt
+      blob.split("\n").take(limit).join("\n")
+    else
+      blob
+    end
+
+    HighlightedSource.new(name, _blob).to_formatted_html.html_safe
   end
 end
