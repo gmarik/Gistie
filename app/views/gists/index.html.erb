@@ -6,21 +6,16 @@
 
 <% else %>
 
-<table>
-  <tr>
-    <th>id </th>
-    <th>actions </th>
-  </tr>
-
 <% @gists.each do |gist| %>
 
-  <tr class="gist" data-gist_id="<%= gist.id %>">
-    <td><%= gist.id %> </td>
-    <td><%= link_to 'Show', gist %>
-        <%= link_to 'Edit', edit_gist_path(gist) %>
-        <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
-  </tr>
+  <div class="gist" data-gist_id="<%= gist.id %>">
+    <div>
+      <%= link_to "##{gist.id}", gist %>
+      <%= gist.description %> 
+    </div>
+    <div class="syntax">
+      <%= gist.to_preview_html %> 
+    </div>
+  </div>
 <% end %>
-</table>
 <% end %>
