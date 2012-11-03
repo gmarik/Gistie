@@ -1,0 +1,25 @@
+
+.syntax * {
+  padding: 0;
+  margin: 0;
+}
+
+.syntax pre {
+  font: 12px Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace
+  font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+  white-space: pre;
+  line-height: 1.3em;
+  font-size: 80%;
+
+  padding: 1em 0.5em;
+
+
+}
+.syntax > table {
+  border: 0
+}
+
+.syntax > table th pre {
+  color: #AAA !important;
+  text-align: right;
+}
