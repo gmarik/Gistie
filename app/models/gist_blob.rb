@@ -17,6 +17,12 @@ class GistBlob
     @name || 'Text'
   end
 
+  def blob
+    if @blob.respond_to?(:call) then @blob.call
+    else @blob
+    end
+  end
+
   def blank?
     self.blob.blank?
   end

@@ -7,6 +7,11 @@ describe RepoReader do
       def repo
         Rugged::Repository.new(fixture_repo_path)
       end
+
+      # TODO spec this instead shorcutting
+      def lazy_read_blob(oid)
+        read_blob(oid)
+      end
     end.new
   end
 
