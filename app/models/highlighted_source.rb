@@ -5,10 +5,15 @@ class HighlightedSource
   end
 
   def lexer
-    case @filename
-    when /\.rb/     then :ruby
-    # when /\.md/     then :markdown
-    else                 :text
+
+    # TODO: spec
+    # TODO: binary
+    begin
+      Pygments.lexer_name_for(filename: @filename)
+    rescue MentosError => e
+      Rails.logger.warn("Couldn't find lexer for #@filename: #{e.message}")
+
+      :text
     end
   end
 
