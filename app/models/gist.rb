@@ -93,4 +93,8 @@ class Gist < ActiveRecord::Base
   def gist_write
     repo.write(self.gist_blobs)
   end
+
+  def to_preview_html
+    self.gist_blobs.first.to_formatted_html(true)
+  end
 end
