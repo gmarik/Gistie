@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+$(function() {
+
+  function rmBlob() {
+    // TODO: implment "undo"
+    $(this).parents('.control-group:first').
+      find('*[name]').
+        attr('disabled', 'disabled').
+        end().
+      hide()
+
+  }
+
+  $('form span[rel=rmBlob]').click(rmBlob)
+
+})
