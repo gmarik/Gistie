@@ -2,7 +2,8 @@
   <fieldset>
   <% if @gist.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@gist.errors.count, "error") %> prohibited this gist from being saved:</h2>
+      <%# TODO improve error display %>
+      <strong><%= pluralize(@gist.errors.count, "error") %> prohibited this gist from being saved:</strong>
 
       <ul>
       <% @gist.errors.full_messages.each do |msg| %>
