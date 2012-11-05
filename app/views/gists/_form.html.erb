@@ -28,14 +28,11 @@
     <%= render partial: 'gist_blob', object: GistBlob.new, locals: {f: f} %>
   </div>
 
-  <%- end -%>
-    <div class="control-group">
-      <div class="controls">
-        <span class="pull-right action act-primary" title="add file"><i class="icon-plus-sign icon-large"></i></span>
-      </div>
+  <div class="control-group">
+    <div class="controls">
+      <span rel="addBlob" class="pull-right action act-primary" title="add file"><i class="icon-plus-sign icon-large"></i></span>
     </div>
-
-
+  </div>
 
 </fieldset>
 

@@ -28,6 +28,17 @@ $(function() {
 
   }
 
+  function addBlob() {
+    // TODO: implment "undo"
+    var t = $('form .empty')
+    var template = t.html()
+    $(t).before(template).
+         show().
+         effect('highlight', {}, 3000)
+  }
+
+
   $('form span[rel=rmBlob]').click(rmBlob)
+  $('form span[rel=addBlob]').click(addBlob)
 
 })
