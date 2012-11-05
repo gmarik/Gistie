@@ -1,16 +1,32 @@
-<h1> Gist #<%= @gist.id %> </h1>
+<h2> Gist #<%= @gist.id %></h2>
 
 <p>
   <%= link_to i('edit',  "Edit"), edit_gist_path(@gist), class: 'btn btn-primary' %>
   <%= link_to i('trash', "Destroy"), @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
-<div >
+<div class="gist">
+
+  <table class="table table-bordered meta" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr class="info">
+      <th> description </dt>
+      <td> <%= @gist.description %> </dd>
+    </tr>
+    <tr class="info">
+      <th> public clone url</dt>
+      <td> <%= public_clone_url(@gist) %> </dd>
+    </tr>
+  </tbody>
+  <caption> Gist #<%= @gist.id %> info </caption>
+  </table>
 
   <%- @gist.gist_blobs.each do |b| %>
 
-    <div> <%= i('file', b.name) %> </div>
+    <div class="file">
+    <div class="meta"> <%= i('file', b.name) %> </div>
     <div class="data syntax"> <%= b.to_formatted_html %> </div>
+    </div>
 
   <% end %>
 
