@@ -33,9 +33,9 @@ $(function() {
     // TODO: implment "undo"
     var t = $('form .empty')
     var template = t.html()
-    $(t).before(template).
-         show().
-         effect('highlight', {}, 3000)
+    var blob = $(template).insertBefore(t)
+    $(blob).
+      effect('highlight', {}, 3000)
   }
 
 
