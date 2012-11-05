@@ -26,6 +26,7 @@
       <div class="control-group file">
         <div class="controls">
           <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
+          <span rel="remove" class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
           <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
         </div>
       </div>
@@ -37,11 +38,20 @@
     <div class="control-group">
       <div class="controls">
         <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
+        <span class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
         <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
       </div>
     </div>
 
   <%- end -%>
+    <div class="control-group">
+      <div class="controls">
+        <span class="pull-right action act-primary" title="add file"><i class="icon-plus-sign icon-large"></i></span>
+      </div>
+    </div>
+
+
+
 </fieldset>
 
 
