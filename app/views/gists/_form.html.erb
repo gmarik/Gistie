@@ -25,7 +25,9 @@
      <%= render partial: 'gist_blob', object: gb, locals: {f: f } %>
   <% end %>
 
-  <div class="empty">
+  <% s = 'display:none;' unless @gist.gist_blobs.empty? %>
+
+  <div class="empty" style="<%= s %>">
     <%= render partial: 'gist_blob', object: GistBlob.new, locals: {f: f} %>
   </div>
 
