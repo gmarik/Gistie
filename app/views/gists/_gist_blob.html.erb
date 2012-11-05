@@ -1,0 +1,13 @@
+<% n = "gist[gist_blobs_attributes][]" -%>
+
+<%= f.fields_for(gist_blob) do |gf| -%>
+
+  <div class="control-group file">
+    <div class="controls">
+      <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
+      <span rel="rmBlob" class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
+      <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
+    </div>
+  </div>
+
+<%- end -%>

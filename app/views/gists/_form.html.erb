@@ -21,27 +21,12 @@
   <hr/>
 
   <% @gist.gist_blobs.each do |gb| %>
-    <% n = "gist[gist_blobs_attributes][]" -%>
-    <%= fields_for(gb) do |gf| -%>
-      <div class="control-group file">
-        <div class="controls">
-          <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
-          <span rel="rmBlob" class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
-          <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
-        </div>
-      </div>
-    <%- end -%>
+     <%= render partial: 'gist_blob', object: gb, locals: {f: f } %>
   <% end %>
 
-  <%= fields_for(GistBlob.new) do |gf| -%>
-    <% n = "gist[gist_blobs_attributes][]" -%>
-    <div class="control-group">
-      <div class="controls">
-        <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
-        <span rel="rmBlob" class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
-        <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
-      </div>
-    </div>
+  <div class="empty">
+    <%= render partial: 'gist_blob', object: GistBlob.new, locals: {f: f} %>
+  </div>
 
   <%- end -%>
     <div class="control-group">
