@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/gmarik/bootstrap_kaminari
+  revision: 961d174918377d89571e3df69c257d9168ea2883
+  specs:
+    bootstrap_kaminari (0.0.2)
+      kaminari (>= 0.12.4)
+      rails (>= 3.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -69,6 +77,9 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.2.2)
       commonjs (~> 0.2.6)
     less-rails (2.2.5)
@@ -174,11 +185,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap_kaminari!
   capybara
   coffee-rails (~> 3.2.1)
   font-awesome-rails
   jquery-rails
   jquery-ui-rails
+  kaminari
   poltergeist
   pygments.rb
   rails (= 3.2.8)

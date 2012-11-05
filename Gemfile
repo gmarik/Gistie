@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'rugged', '0.17.0.b6'
 gem 'pygments.rb'
 
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -27,6 +29,9 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'twitter-bootstrap-rails'
+
+gem 'kaminari'
+gem 'bootstrap_kaminari', :git => 'https://github.com/gmarik/bootstrap_kaminari'
 
 group :test, :development do
   gem 'rspec-rails'
