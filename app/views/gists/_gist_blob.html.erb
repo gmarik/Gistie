@@ -3,10 +3,12 @@
 <%= f.fields_for(gist_blob) do |gf| -%>
 
   <div class="control-group file">
-    <div class="controls">
-      <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
-      <span rel="rmBlob" class="action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
-      <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
+    <div class="controls ">
+      <div class="controls controls-row"> 
+      <%= gf.text_field 'name', :name => "#{n}[name]", class: 'span8' -%>
+      <span rel="rmBlob" class="span1 action act-danger" title="remove file"><i class="icon-remove-sign icon-large"></i></span>
+      </div>
+      <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'span9' -%>
     </div>
   </div>
 
