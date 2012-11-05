@@ -25,6 +25,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'twitter-bootstrap-rails'
 
 group :test, :development do
