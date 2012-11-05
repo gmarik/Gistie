@@ -9,13 +9,15 @@
 <% @gists.each do |gist| %>
 
   <div class="gist" data-gist_id="<%= gist.id %>">
-    <div>
-      <%= link_to "##{gist.id}", gist %>
+    <h4>
+      <%= link_to i('book', "##{gist.id}"), gist %>
       <%= gist.description %> 
-    </div>
+    </h4>
     <div class="syntax">
       <%= gist.to_preview_html %> 
     </div>
+
+    <hr />
   </div>
 <% end %>
 <% end %>

@@ -1,15 +1,15 @@
 <h1> Gist #<%= @gist.id %> </h1>
 
 <p>
-  <%= link_to 'Edit', edit_gist_path(@gist), class: 'btn btn-primary' %>
-  <%= link_to 'Destroy', @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to i('edit',  "Edit"), edit_gist_path(@gist), class: 'btn btn-primary' %>
+  <%= link_to i('trash', "Destroy"), @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
 <div >
 
   <%- @gist.gist_blobs.each do |b| %>
 
-    <div> <%= b.name %> </div>
+    <div> <%= i('file', b.name) %> </div>
     <div class="data syntax"> <%= b.to_formatted_html %> </div>
 
   <% end %>
