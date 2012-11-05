@@ -18,18 +18,15 @@
     </div>
   </div>
 
+  <hr/>
+
   <% @gist.gist_blobs.each do |gb| %>
     <% n = "gist[gist_blobs_attributes][]" -%>
     <%= fields_for(gb) do |gf| -%>
-      <div class="control-group">
+      <div class="control-group file">
         <div class="controls">
           <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <div class="controls">
-        <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
+          <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
         </div>
       </div>
     <%- end -%>
@@ -40,17 +37,11 @@
     <div class="control-group">
       <div class="controls">
         <%= gf.text_field 'name', :name => "#{n}[name]", class: 'input-xlarge' -%>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
         <%= gf.text_area 'blob', :name => "#{n}[blob]", class: 'input-xlarge' -%>
       </div>
     </div>
 
   <%- end -%>
-
 </fieldset>
 
 
