@@ -9,15 +9,15 @@
 <% @gists.each do |gist| %>
 
   <div class="row gist" data-gist_id="<%= gist.id %>">
-    <div class="span6">
+    <div class="span7">
       <h4>
         <%= link_to i('book', "##{gist.id}"), gist %>
         <%= gist.description %> 
       </h4>
     </div>
 
-    <div class="span3">
-      <abbr class="timeago" title="<%= time = gist.created_at.getutc.iso8601 %>"> <%= time.to_s %></abbr>
+    <div class="span2">
+      <abbr class="timeago pull-right" title="<%= time = gist.created_at.getutc.iso8601 %>"> <%= time.to_s %></abbr>
     </div>
 
     <div class="span9 syntax">
