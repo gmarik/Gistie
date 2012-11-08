@@ -16,6 +16,10 @@ def fixture_repo_path(repo_name = 'test_repo')
   Rails.root.join('spec/fixtures/').join(repo_name + '.git/').to_s
 end
 
+def fixture_repo
+  Rugged::Repository.new(fixture_repo_path)
+end
+
 Cleanup = ->(spec) do
   git_repos = Rails.configuration.repo_root + '*.git/'
   Dir[git_repos].each do |dir|
