@@ -8,16 +8,21 @@
 
 <% @gists.each do |gist| %>
 
-  <div class="gist" data-gist_id="<%= gist.id %>">
-    <h4>
-      <%= link_to i('book', "##{gist.id}"), gist %>
-      <%= gist.description %> 
-    </h4>
-    <div class="syntax">
-      <%= gist.to_preview_html %> 
+  <div class="row gist" data-gist_id="<%= gist.id %>">
+    <div class="span6">
+      <h4>
+        <%= link_to i('book', "##{gist.id}"), gist %>
+        <%= gist.description %> 
+      </h4>
     </div>
 
-    <hr />
+    <div class="span3">
+    </div>
+
+    <div class="span9 syntax">
+      <%= gist.to_preview_html %>
+    </div>
+
   </div>
 <% end %>
 
