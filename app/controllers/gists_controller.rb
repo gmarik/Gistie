@@ -2,7 +2,7 @@ class GistsController < ApplicationController
   respond_to :html
 
   def index
-    @gists = Gist.page(params[:page])
+    @gists = Gist.recent.page(params[:page])
   end
 
   def show

@@ -8,6 +8,8 @@ class Gist < ActiveRecord::Base
 
   validate :non_blank, :unique_names
 
+  scope :recent, -> { order('created_at desc') }
+
   def non_blank
     blank? and errors.add(:gist_blobs, "Can't be blank")
   end
