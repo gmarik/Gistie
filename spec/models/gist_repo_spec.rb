@@ -38,4 +38,11 @@ describe GistRepo do
     end
 
   end
+
+  describe '#log' do
+
+    subject(:log) { GistRepo.new(fixture_repo_path).log }
+
+    it { should respond_to(:commits) }
+  end
 end

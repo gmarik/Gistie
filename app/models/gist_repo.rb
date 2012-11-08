@@ -24,4 +24,8 @@ class GistRepo
   def self.repo_path(name, root = Rails.configuration.repo_root)
     (root + ( name + ".git/")).to_s
   end
+
+  def log(opts = {})
+    @log ||= RepoLog.new(repo, opts)
+  end
 end
