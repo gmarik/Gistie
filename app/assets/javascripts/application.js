@@ -19,6 +19,11 @@
 
 $(function() {
 
+  $('abbr.timeago').timeago()
+
+
+  // Gist
+
   function rmBlob() {
     // TODO: implment "undo"
     $(this).parents('.control-group:first').
@@ -37,7 +42,6 @@ $(function() {
     $(blob).
       effect('highlight', {}, 3000)
   }
-
 
   $('form span[rel=rmBlob]').click(rmBlob)
   $('form span[rel=addBlob]').click(addBlob)
