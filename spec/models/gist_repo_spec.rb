@@ -43,6 +43,6 @@ describe GistRepo do
 
     subject(:log) { GistRepo.new(fixture_repo_path).log }
 
-    it { should respond_to(:commits) }
+    it { should be_a(RepoLog) }
   end
 end
