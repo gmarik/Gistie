@@ -112,7 +112,11 @@
              <%= yield %>
           </div>
           <div class="span3">
-            <%#= render 'sidebar' %>
+            <% if content_for? :sidebar %>
+              <div class="sidebar">
+                <%= yield :sidebar %>
+              </div>
+            <% end %>
           </div><!--/span-->
         </div><!--/row-->
 
