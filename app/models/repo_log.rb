@@ -10,14 +10,13 @@ class RepoLog
     end
 
     def pretty_sha
-      commit_oid[0, 9]
+      sha[0, 9]
     end
 
-    def commit_oid
+    def sha
       @commit.oid
     end
-
-    alias_method :commit_sha, :commit_oid
+    alias_method :oid, :sha
   end
 
   include Enumerable
