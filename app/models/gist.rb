@@ -96,6 +96,10 @@ class Gist < ActiveRecord::Base
     repo.write(self.gist_blobs)
   end
 
+  def recent_commits(limit = 10)
+    repo.log.take(limit)
+  end
+
   def to_preview_html
     self.gist_blobs.first.to_formatted_html(true)
   end
