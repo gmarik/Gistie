@@ -1,24 +1,50 @@
 class RepoLog
 
+  class Commit
+    def initialize(commit)
+      @commit = commit
+    end
+
+    def created_at
+      @commit.time
+    end
+
+    def pretty_sha
+      commit_oid[0, 9]
+    end
+
+    def commit_oid
+      @commit.oid
+    end
+
+    alias_method :commit_sha, :commit_oid
+  end
+
+  include Enumerable
+
   def initialize(repo, opts = {})
-    @limit = opts.delete(:limit) || 10
     @repo = repo
     @target = opts.delete(:target) || @repo.head.target
+    @walker = walker(@repo, @target)
   end
 
-
-  def commits
-    w = Rugged::Walker.new(@repo)
-    w.sorting(Rugged::SORT_DATE)
-    w.push(@target)
-    w.take(@limit)
+  def each(&block)
+    to_enum.each(&block)
   end
 
-  def commit_oids
-    commits.map(&:oid)
+  def walker(repo, target)
+    walker = Rugged::Walker.new(repo)
+    walker.sorting(Rugged::SORT_DATE)
+    walker.push(target)
+    walker
   end
 
-  def pretty_commits
-    commit_oids.map {|oid| oid[0, 9]}
+  def to_enum
+    Enumerator.new do |y|
+      enum = @walker.to_enum
+      loop do
+        y << Commit.new(enum.next)
+      end
+    end
   end
 end

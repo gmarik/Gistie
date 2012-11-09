@@ -2,16 +2,25 @@ require 'spec_helper'
 
 describe RepoLog do
 
-  subject(:repo) { RepoLog.new(fixture_repo) }
+  let(:log) { RepoLog.new(fixture_repo) }
+  subject   { log.to_a }
 
-  describe '#commits' do
-    it {should have(2).commits}
-    its(:commit_oids) {should == ["c18d3d5324e98d7bb2e5e5934e4ef6c3046a7ca1", "86709acd61353d08a1d3ff15f7fc8b554c34a378"]}
-    its(:pretty_commits) {should == ["c18d3d532", "86709acd6"]}
+  its(:size) { should > 0 }
+
+  describe RepoLog::Commit do
+
+    subject { log.first }
+
+    its(:commit_oid) { should == 'c18d3d5324e98d7bb2e5e5934e4ef6c3046a7ca1' }
+    its(:pretty_sha) { should == 'c18d3d532' }
+    its(:created_at) { should == Time.parse('2012-10-15 23:31:18 -0500') }
+
   end
 
-  describe '#limit' do
-    subject(:repo) { RepoLog.new(fixture_repo, limit: 1) }
-    its(:pretty_commits) { should == ['c18d3d532'] }
+  describe 'acts as enum' do
+    it 'limits with take' do
+      log.take(1).map(&:pretty_sha).
+        should == ['c18d3d532']
+    end
   end
 end
