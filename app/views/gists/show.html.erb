@@ -1,3 +1,18 @@
+<% content_for :sidebar do %>
+
+  <div class="commits-recent">
+    <h4> Revisions </h4>
+    <ul>
+      <% @gist.recent_commits.each do |c| %>
+        <li> 
+          <abbr class="sha" title="<%= c.sha %>"><%= c.pretty_sha %></abbr>
+          <abbr class="timeago " title="<%= time = c.created_at.getutc.iso8601 %>"> <%= time.to_s %></abbr>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2><span><%= i('book') %></span> Gist #<%= @gist.id %></h2>
 
 <p>
