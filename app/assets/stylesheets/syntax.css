@@ -4,17 +4,19 @@
   margin: 0;
 }
 
+.sha,
 .syntax pre {
-  font: 12px Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace
-  font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+  font-size: 80%;
+  font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+}
+
+.syntax pre {
   white-space: pre;
   line-height: 1.3em;
-  font-size: 80%;
 
   padding: 1em 0.5em;
-
-
 }
+
 .syntax > table {
   border: 0
 }
