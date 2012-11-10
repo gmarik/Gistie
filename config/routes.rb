@@ -1,8 +1,16 @@
 Gitsy::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  #
 
-  resources :gists
+  # match '/gists/:gist_id/blobs/:id/:filename' => 'blobs#show'
+
+  resources :gists do
+    scope format: 'text' do
+      resources :blobs, only: [:show], filename: nil
+      match 'blobs/:id(/:filename(.:format))' => 'blobs#show', :as => :raw
+    end
+  end
 
   root :to => 'gists#index'
 
