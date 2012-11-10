@@ -3,7 +3,7 @@
   <ul class="unstyled">
     <% gist.recent_commits.each do |c| %>
       <li> 
-        <abbr class="sha" title="<%= c.sha %>"><%= c.pretty_sha %></abbr>
+        <a href="<%= gist_path(gist, revision: c.sha) %>"><abbr class="sha" title="<%= c.sha %>"><%= c.pretty_sha %></abbr></a>
         <abbr class="timeago " title="<%= (time = c.created_at.getutc).iso8601 %>"> <%= time.to_s %></abbr>
       </li>
     <% end %>
