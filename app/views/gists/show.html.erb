@@ -1,8 +1,9 @@
+
 <% content_for :sidebar do %>
 
   <div class="commits-recent">
     <h4> Revisions </h4>
-    <ul>
+    <ul class="unstyled">
       <% @gist.recent_commits.each do |c| %>
         <li> 
           <abbr class="sha" title="<%= c.sha %>"><%= c.pretty_sha %></abbr>
