@@ -17,10 +17,23 @@
 <h2><span><%= i('book') %></span> Gist #<%= @gist.id %></h2>
 
 
-<p class="span3 pull-right text-pull-right">
-  <%= link_to i('edit',  "Edit"), edit_gist_path(@gist), class: 'btn btn-primary' %>
-  <%= link_to i('trash', "Destroy"), @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
+
+<div class="row">
+  <div class="btn-group span3 pull-right text-pull-right">
+
+    <%= link_to i('edit',  "Edit"), edit_gist_path(@gist), class: 'btn btn-primary' %>
+
+    <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu">
+      <li> <%= link_to i('trash', "Destroy"), @gist,              class: '', method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+    </ul>
+
+  </div>
+</div>
 
 <div class="gist">
 
