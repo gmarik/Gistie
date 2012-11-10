@@ -16,7 +16,8 @@
 
 <h2><span><%= i('book') %></span> Gist #<%= @gist.id %></h2>
 
-<p>
+
+<p class="span3 pull-right text-pull-right">
   <%= link_to i('edit',  "Edit"), edit_gist_path(@gist), class: 'btn btn-primary' %>
   <%= link_to i('trash', "Destroy"), @gist,              class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
@@ -34,7 +35,6 @@
       <td> <%= public_clone_url(@gist) %> </dd>
     </tr>
   </tbody>
-  <caption> Gist #<%= @gist.id %> info </caption>
   </table>
 
   <%- @gist.gist_blobs.each do |b| %>
