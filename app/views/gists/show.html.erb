@@ -44,8 +44,12 @@
     <% gb = GistBlobPresenter.new(b) %>
 
     <div class="file">
-    <div class="meta"> <%= i('file', gb.name) %> </div>
+    <div class="row">
+      <div class="meta span8"> <%= i('file', b.name) %> </div>
+      <div class="meta span1 text-pull-right"> <%= link_to('raw', gist_raw_url(@gist.id, b.oid, b.name)) %> </div>
+    </div>
     <div class="data syntax"> <%= gb.pretty_content %> </div>
+
     </div>
 
   <% end %>
