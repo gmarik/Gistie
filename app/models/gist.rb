@@ -34,6 +34,10 @@ class Gist < ActiveRecord::Base
     gist_blobs.blank?
   end
 
+  def tree(head = repo.head)
+    repo.tree(head)
+  end
+
 
   def gist_blobs_attributes
     @gist_blobs_attributes || []
