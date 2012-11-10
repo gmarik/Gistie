@@ -7,8 +7,7 @@ Gitsy::Application.routes.draw do
 
   resources :gists do
     scope format: 'text' do
-      resources :blobs, only: [:show], filename: nil
-      match 'blobs/:id(/:filename(.:format))' => 'blobs#show', :as => :raw
+      match 'blobs/:id/*filename' => 'blobs#show', as: :raw, filename: /.*/
     end
   end
 
