@@ -34,11 +34,6 @@ class Gist < ActiveRecord::Base
     gist_blobs.blank?
   end
 
-  def tree(head = repo.head)
-    repo.tree(head)
-  end
-
-
   def gist_blobs_attributes
     @gist_blobs_attributes || []
   end
@@ -104,7 +99,11 @@ class Gist < ActiveRecord::Base
     repo.log.take(limit)
   end
 
+  def tree(head)
+    repo.tree(head || repo.head)
+  end
+
   def to_preview_html
-    GistBlobPresenter.new(self.tree.first).pretty_excerpt
+    GistBlobPresenter.new(self.tree(repo.head).first).pretty_excerpt
   end
 end
