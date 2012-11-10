@@ -9,6 +9,7 @@ class GistRepo
     @path = path
   end
 
+  delegate :lookup, :to => :repo
 
   def repo
     @repo ||= Repository.new(@path)
