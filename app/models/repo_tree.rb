@@ -21,7 +21,7 @@ class RepoTree
 
   attr_reader :repo, :head
 
-  def initialize(repo, head = repo.head.target)
+  def initialize(repo, head)
     @repo = repo
     @head = head
   end
