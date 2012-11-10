@@ -13,9 +13,7 @@ describe GistBlob do
 
     context "valid" do
       subject(:gist_file) {
-        GistBlob.new.tap do |g|
-          g.blob = "Holla"
-        end
+        GistBlob.new(blob: "Holla")
       }
 
       it {should be_valid}
