@@ -105,6 +105,6 @@ class Gist < ActiveRecord::Base
   end
 
   def to_preview_html
-    self.gist_blobs.first.to_formatted_html(true)
+    GistBlobPresenter.new(self.tree.first).pretty_excerpt
   end
 end

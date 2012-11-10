@@ -39,11 +39,13 @@
   </tbody>
   </table>
 
-  <%- @gist.gist_blobs.each do |b| %>
+  <%- @gist.tree.each do |b| %>
+
+    <% gb = GistBlobPresenter.new(b) %>
 
     <div class="file">
-    <div class="meta"> <%= i('file', b.name) %> </div>
-    <div class="data syntax"> <%= b.to_formatted_html %> </div>
+    <div class="meta"> <%= i('file', gb.name) %> </div>
+    <div class="data syntax"> <%= gb.pretty_content %> </div>
     </div>
 
   <% end %>
