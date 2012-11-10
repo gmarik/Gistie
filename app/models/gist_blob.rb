@@ -5,11 +5,9 @@ class GistBlob
 
   validates :blob, { presence: true }
 
-  def self.from_params(params)
-    new.tap do |gf|
-      params.keys.each do |k|
-        gf.send("#{k}=", params[k])
-      end
+  def initialize(params = {})
+    params.each do |k, v|
+      self.send("#{k}=", v)
     end
   end
 

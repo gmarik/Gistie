@@ -28,10 +28,10 @@ describe GistBlob do
     its(:name) { should == 'Text' }
   end
 
-  describe ".from_params" do
+  describe ".new" do
 
     subject(:gist_file) do
-      GistBlob.from_params({blob: "Holla", name: "name.md"})
+      GistBlob.new({blob: "Holla", name: "name.md"})
     end
 
     it { should be_valid }

@@ -41,7 +41,7 @@ class Gist < ActiveRecord::Base
 
   def gist_blobs_attributes=(attrs)
     self.gist_blobs = attrs.map do |attr|
-      GistBlob.from_params(attr)
+      GistBlob.new(attr)
     end.reject(&:blank?)
   end
 
@@ -89,7 +89,7 @@ class Gist < ActiveRecord::Base
   def gist_blob(entry)
     # TODO: make consitent
     params = {name: entry[:name], blob: entry[:content]}
-    GistBlob.from_params(params)
+    GistBlob.new(params)
   end
 
   def gist_write
