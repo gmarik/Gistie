@@ -4,7 +4,7 @@ Gitsy::Application.routes.draw do
 
   resources :gists
 
-  # root :to => 'welcome#index'
+  root :to => 'gists#index'
 
   # See how all your routes lay out with "rake routes"
 
