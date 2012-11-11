@@ -3,6 +3,8 @@
 `Gitsy` is an open source [Git]-based pastebin implementation that enables sharing snippets(aka Gist) using simple web UI.
 Every Gist is a *Git repository* thus **versioned** and **cloneable**.
 
+![gitsy](https://lh6.googleusercontent.com/-0uLEFS1ZVK8/UJ_g9D96qqI/AAAAAAAAHpE/L7rAklsb9Fw/s819/gitsy.png)
+
 ## Features
 
 as of `v0.1`
