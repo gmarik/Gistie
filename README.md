@@ -11,7 +11,7 @@ as of `v0.1`
 
 - Create, Edit, Delete Gists
 - Revision browsing
-- Cloneable
+- Cloneable (with by git-daemon)
 - public by default
 - Raw view
 
