@@ -82,12 +82,12 @@ class Gist < ActiveRecord::Base
   end
 
   def gist_read
-    repo.repo_read.map(&method(:gist_blob))
+    repo.tree(repo.head).map(&method(:gist_blob))
   end
 
   def gist_blob(entry)
     # TODO: make consitent
-    params = {name: entry[:name], blob: entry[:content]}
+    params = {name: entry.name, blob: entry.content}
     GistBlob.new(params)
   end
 

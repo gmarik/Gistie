@@ -43,30 +43,6 @@ describe Gist do
   end
 
   describe '.gist_blobs' do
-    context 'existing Gist' do
-      # TODO: refactor
-      # content/blob duplication
-      let(:gist_blob) {
-        {name: 'file', content: 'holla!', blob: 'holla!'}
-      }
-
-      let(:fake_repo) {
-        mock(:Repo, repo_read: [{name: 'file', content: 'holla!'}])
-      }
-
-      subject(:gist) do
-        g = Gist.new()
-        g.stub!(new_record?: false )
-        g.stub!(repo: fake_repo )
-        g
-      end
-
-      it 'reads repo content' do
-        gist.gist_blobs == [gist_blob]
-      end
-
-    end
-
     context 'new Gist with blob_attributes set' do
       subject(:gist) do
         Gist.new(gist_blobs_attributes: [{blob: "Holla"}])

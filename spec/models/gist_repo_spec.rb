@@ -18,7 +18,6 @@ describe GistRepo do
   its(:path) { should == fixture_repo_path }
   its(:repo) { should be_a(Rugged::Repository) }
 
-  it { should be_a(RepoReader) }
   it { should be_a(RepoWriter) }
 
   describe '.named' do
