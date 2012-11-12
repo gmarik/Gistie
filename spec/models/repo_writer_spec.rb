@@ -61,7 +61,7 @@ describe RepoWriter do
       named_sha1s = repo_writer.write_blobs([a_blob])
       toid = repo_writer.write_tree(named_sha1s)
       repo_writer.write_commit(toid, author).
-        should == '036902d6b06c79d2997902fc5cae51b27f69371b'
+        should == 'a5772b04cc0f61af73868f36a90e2e669c402e78'
     end
   end
 end
