@@ -60,3 +60,16 @@ run
 1. `cd Gistie`
 2. `rake db:test:clone_structure`
 3. `rspec spec`
+
+ License
+---------------
+
+Please see LICENSE for licensing details.
+
+ Author
+---------------
+
+Maryan Hratson aka [@gmarik](http://github.com/gmarik)
+
+- contact: [@gmarik](http://twitter.com/gmarik)
+
