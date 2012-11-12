@@ -7,9 +7,9 @@ module RepoWriter
   def write(blobs)
     # TODO: extract
     author = {
-      email: "gitsy@gitsy.com", 
+      email: "gistie@gistie.com", 
       time: Time.now,
-      name: "gitsy"
+      name: "gistie"
     }
 
     named_blob_oids = write_blobs(blobs)

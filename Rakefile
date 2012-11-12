@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Gitsy::Application.load_tasks
+Gistie::Application.load_tasks

@@ -10,10 +10,10 @@ describe RepoWriter do
 
   let(:author) {
     {
-      email: "gitsy@gitsy.com",
+      email: "Gistie@Gistie.com",
       # important to fix the time as it causes commit SHA to change
       time: '2012.10.10 18:00:01'.to_time,
-      name: "gitsy"
+      name: "Gistie"
     }
   }
 
