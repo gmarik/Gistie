@@ -1,4 +1,4 @@
- Gistie
+Gistie
 ================
 
 [Gistie] is an open source [Git]-based pastebin implementation that enables sharing snippets(aka Gist) using simple web UI.
@@ -6,20 +6,21 @@ Every Gist is a *Git repository* thus **versioned** and **cloneable**. Heavily i
 
 ![Gistie](https://lh6.googleusercontent.com/-0uLEFS1ZVK8/UJ_g9D96qqI/AAAAAAAAHpE/L7rAklsb9Fw/s819/gitsy.png)
 
- Features
+Features
 ---------------
 
-as of `v0.1`
+as of `v0.1`:
 
 - Create, Edit, Delete Gists
 - Revision browsing
 - Cloneable (served by git-daemon)
 - public by default
 - Raw view
-
 - syntax highlight with pygments (filename based detection)
 
- TODO
+
+
+TODO
 ---------------
 
 - Fork
@@ -27,13 +28,13 @@ as of `v0.1`
 - Search
 - Binary support
 - Inline image
-
 - Accounts
 - Private gists
 - Commenting
 - "Code Review"
 
- Installation
+
+Installation
 ---------------
 
 [Gistie] is based on Ruby on Rails, Sqlite, Libgit2 and Pygments(requires Python installed).
@@ -45,8 +46,7 @@ as of `v0.1`
 4. `rails server`
 
 
-
- Making repos cloneable
+Making repos cloneable
 --------------
 
 
@@ -56,19 +56,21 @@ run
 
 
 
- Testing
+Testing
 ---------------
 
 1. `cd Gistie`
 2. `rake db:test:clone_structure`
 3. `rspec spec`
 
- License
+
+License
 ---------------
 
 Please see LICENSE for licensing details.
 
- Author
+
+Author
 ---------------
 
 Maryan Hratson aka [@gmarik](http://github.com/gmarik)
