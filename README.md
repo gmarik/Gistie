@@ -1,8 +1,8 @@
  Gistie
 ================
 
-`Gistie` is an open source [Git]-based pastebin implementation that enables sharing snippets(aka Gist) using simple web UI.
-Every Gist is a *Git repository* thus **versioned** and **cloneable**.
+[Gistie] is an open source [Git]-based pastebin implementation that enables sharing snippets(aka Gist) using simple web UI.
+Every Gist is a *Git repository* thus **versioned** and **cloneable**. Heavily inspired by gist.github.com
 
 ![Gistie](https://lh6.googleusercontent.com/-0uLEFS1ZVK8/UJ_g9D96qqI/AAAAAAAAHpE/L7rAklsb9Fw/s819/gitsy.png)
 
@@ -44,6 +44,8 @@ as of `v0.1`
 3. `rake db:create db:migrate`
 4. `rails server`
 
+
+
  Making repos cloneable
 --------------
 
@@ -72,4 +74,6 @@ Please see LICENSE for licensing details.
 Maryan Hratson aka [@gmarik](http://github.com/gmarik)
 
 - contact: [@gmarik](http://twitter.com/gmarik)
+
+[Gistie]:http://github.com/gmarik/Gistie
 
