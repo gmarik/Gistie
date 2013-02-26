@@ -6,7 +6,7 @@ Gistie::Application.routes.draw do
   # match '/gists/:gist_id/blobs/:id/:filename' => 'blobs#show'
 
 
-  resources :gists do
+  resources :gists, :blobs do
     scope format: 'text' do
       match 'blobs/:id/*filename' => 'blobs#show', as: :raw, filename: /.*/, format: false
     end
