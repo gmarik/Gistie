@@ -72,6 +72,7 @@ class HighlightedSource
   end
 
   def pygments
+    @source.force_encoding("UTF-8")
     Pygments.highlight(@source, :lexer => lexer)
   end
 end
